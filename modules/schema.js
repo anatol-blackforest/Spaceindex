@@ -3,86 +3,85 @@ mongoose.Promise = Promise;
 
 //Модель небесного тела
 const AstroBodySchema = {
+    title: {
+        type: String,
+        required: "Planet or moon must have a title!",
+        unique: true
+    },
+    description: {
+        type: String,
+        required: "Please, describe this planet or planetoid!"
+    },
     diameter: {
         type: Number,
-        default: 1000,
-        require: true,
+        default: 1000
     },
     day:{
         type: Number,
-        default: 24,
-        require: true,
+        default: 24
     },
     gravity: {
         type: Number,
-        default: 1,
-        require: true,
+        default: 1
     },
     temperature: {
         type: Number,
         min: -273,
-        default: 0,
-        require: true,
+        default: 0
     },
     water: {
         type: String,
-        require: true,
         default: 'No water',
         enum: ['No water', 'Some water', 'Water world']
     },
     radiation: {
         type: String,
         enum: ['Low', 'Middle', 'High'],
-        default: 'Middle',
-        require: true,
+        default: 'Middle'
     },
     magnetosphere: {
         type: Boolean,
-        default: true,
-        require: true,
+        default: false
     },
-    atmosphera: {
+    atmosphere: {
         type: Boolean,
-        required: true
-    },
-    atmospheraStructure: {
-        type: Object
+        default: false
     }
 }
 
-// Модель планеты
-const PlanetSchema = new mongoose.Schema({
+// Схема планеты
+const PlanetSchema = mongoose.Schema({
     ...AstroBodySchema,
     year:{
         type: Number,
-        default: 365,
-        require: true,
+        default: 365
     },
-    distanseToStar:{
+    moons: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Moon'
+    }],
+    distanseFromStar:{
         type: Number,
-        default: 150,
-        require: true,
+        default: 150
     }
 }, {
-    timestamps: true // createdAt, updatedAt
+    timestamps: true, // createdAt, updatedAt
 });
 
-// Модель спутника
-const MoonSchema = new mongoose.Schema({
+// Схема спутника
+const MoonSchema = mongoose.Schema({
     ...AstroBodySchema,
-    distanseToParentPlanet:{
+    distanseFromParentPlanet:{
         type: Number,
-        default: 300,
-        require: true,
+        default: 300
+    },
+    parentPlanet: {
+      type: String,
+      ref: 'Planet'
     }
 }, {
-    timestamps: true // createdAt, updatedAt
+    timestamps: true, // createdAt, updatedAt
 });
 
-const Planet = mongoose.model('Planet', PlanetSchema);
-const Moon = mongoose.model('Moon', MoonSchema);
-
-module.exports = {
-    Planet,
-    Moon
-};
+exports.Planet = mongoose.model('Planet', PlanetSchema);
+exports.Moon = mongoose.model('Moon', MoonSchema);
