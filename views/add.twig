@@ -11,34 +11,26 @@
 </head>
 <body>
 	<div id="page">
-		<div id="header">
+        <div id="header">
 			<div>
-				<a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
+				<a href="/" class="logo"><img src="images/logo.png" alt=""></a>
 				<ul id="navigation">
 					<li>
-						<a href="index.html">Home</a>
-					</li>
-					<li>
-						<a href="about.html">About</a>
+						<a href="/">Home</a>
 					</li>
 					<li class="menu">
-						<a href="projects.html">Projects</a>
+						<a href="/about">About</a>
+					</li>
+					<li class="menu">
+						<a href="/planets">Planets</a>
 						<ul class="primary">
 							<li>
-								<a href="proj1.html">proj 1</a>
-							</li>
-						</ul>
-					</li>
-					<li class="menu">
-						<a href="blog.html">Blog</a>
-						<ul class="secondary">
-							<li>
-								<a href="singlepost.html">Single post</a>
+								<a href="/moons">Moons</a>
 							</li>
 						</ul>
 					</li>
 					<li class="selected">
-						<a href="contact.html">Contact</a>
+						<a href="/add">Add post</a>
 					</li>
 				</ul>
 			</div>
@@ -46,13 +38,19 @@
 		<div id="body">
 			<div class="header">
 				<div class="contact">
-					<h1>Contact</h1>
+					<h1>Add article</h1>
 					<h2>DO NOT HESITATE TO CONTACT US</h2>
-					<form action="index.html">
-						<input type="text" name="Name" value="Name" onblur="this.value=!this.value?'Name':this.value;" onfocus="this.select()" onclick="this.value='';">
-						<input type="text" name="Email Address" value="Email Address" onblur="this.value=!this.value?'Email Address':this.value;" onfocus="this.select()" onclick="this.value='';">
-						<input type="text" name="Subject" value="Subject" onblur="this.value=!this.value?'Subject':this.value;" onfocus="this.select()" onclick="this.value='';">
-						<textarea name="message" cols="50" rows="7">Message</textarea>
+					<form action="/add">
+						<input type="text" name="title" value="Title" onblur="this.value=!this.value?'Title':this.value;" onfocus="this.select()" onclick="this.value='';">
+					    <select name="typeofobject">
+							<option value="planet" selected>Planet</option>
+							<option value="moon">Moon</option>
+						</select>		
+
+						<input type="text" name="planet" value="Planet" onblur="this.value=!this.value?'planet':this.value;" onfocus="this.select()" onclick="this.value='';">
+						
+                        
+						<textarea name="article" cols="50" rows="7">Article</textarea>
 						<input type="submit" value="Send" id="submit">
 					</form>
 				</div>
@@ -61,7 +59,7 @@
 		<div id="footer">
 			<div class="connect">
 				<div>
-					<h1>FOLLOW OUR  MISSIONS ON</h1>
+					<h1>FOLLOW OUR MISSIONS ON</h1>
 					<div>
 						<a href="http://freewebsitetemplates.com/go/facebook/" class="facebook">facebook</a>
 						<a href="http://freewebsitetemplates.com/go/twitter/" class="twitter">twitter</a>
