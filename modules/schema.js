@@ -56,16 +56,16 @@ const PlanetSchema = mongoose.Schema({
         type: Number,
         default: 365
     },
-    moons: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Moon'
-    }],
     distanseFromStar:{
         type: Number,
         default: 150
-    }
+    },
+    moons: [{
+        type:     mongoose.Schema.Types.ObjectId,
+        ref:      'Moon'
+    }]
 }, {
-    timestamps: true, // createdAt, updatedAt
+    timestamps: true // createdAt, updatedAt
 });
 
 // Схема спутника
@@ -75,12 +75,10 @@ const MoonSchema = mongoose.Schema({
         type: Number,
         default: 300
     },
-    parentPlanet: {
-      type: String,
-      ref: 'Planet'
-    }
+    parentPlanet: String
+    
 }, {
-    timestamps: true, // createdAt, updatedAt
+    timestamps: true // createdAt, updatedAt
 });
 
 exports.Planet = mongoose.model('Planet', PlanetSchema);

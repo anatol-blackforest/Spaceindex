@@ -2,7 +2,6 @@
 let {Planet, Moon} = require('./schema.js');
 
 module.exports = async ({body}, res, next) => {
-    console.log(body)
     switch(body.type){
         case "planet" : {
             delete body.type
@@ -13,10 +12,12 @@ module.exports = async ({body}, res, next) => {
         case "moon" : {
             delete body.type
             let parentPlanet = body.parentplanet
-            console.log(parentPlanet)
-            let moon = new Moon(body);
+            let moon = new Moon(body)
             moon.parentPlanet = parentPlanet
-            await moon.save();
+            await moon.save()
+            let planet = await Planet.findOne({title: parentPlanet})
+            planet.moons.push(moon._id)
+            await Planet.update({title: parentPlanet}, {$set: planet})
             break
         }
     }
