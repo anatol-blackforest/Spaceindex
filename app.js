@@ -10,6 +10,8 @@ const {connection} = require('./modules');
 const index = require('./routes/index');
 const about = require('./routes/about');
 const add = require('./routes/add');
+const planets = require('./routes/planets');
+const moons = require('./routes/moons');
 
 const app = express();
 
@@ -28,6 +30,8 @@ app.use(async(req, res, next) => await connection(req, next));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/planets', planets);
+app.use('/moons', moons);
 app.use('/about', about);
 app.use('/add', add);
 

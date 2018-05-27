@@ -22,8 +22,11 @@
 						<a href="/about">About</a>
 					</li>
 					<li class="menu">
-						<a href="/planets">Planets</a>
+						<a href="/">Objects</a>
 						<ul class="primary">
+							<li>
+								<a href="/planets">Planets</a>
+							</li>
 							<li>
 								<a href="/moons">Moons</a>
 							</li>
@@ -38,8 +41,7 @@
 		<div id="body">
 			<div class="header">
 				<div>
-					<h1>Spaceindex</h1>
-					<ul>
+					{# <ul>
 						<li>
 							<a href="proj1.html"><img src="images/curious-rover.jpg" alt=""></a>
 							<div>
@@ -56,7 +58,34 @@
 								<a href="proj1.html" class="more">Read More</a>
 							</div>
 						</li>
-					</ul>
+					</ul> #}
+                    {% if objects %}
+						<ul>
+							{% for item in objects %}
+							<li>
+								<div>
+									<h1>{{item.title}}</h1>
+
+                                    {% if category == "planets" %}
+										<p>Moons: 
+											{% for moon in item.moons %}
+											    <a href="moons/{{moon._id}}">{{moon.title}}</a>
+											{% endfor %}
+										</p>
+                                    {% else %}
+										<p>Parent planet: {{item.parentPlanet}}</p>
+                                    {% endif %}
+                                    <p>Description: {{item.description}}</p>
+                                    {% if category == "planets" %}
+									<a href="planetes/{{item._id}}" class="more">Read More</a>
+									{% else %}
+									<a href="moons/{{item._id}}" class="more">Read More</a>
+									{% endif %}
+								</div>
+							</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
 				</div>
 			</div>
 		</div>
