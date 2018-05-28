@@ -77,7 +77,10 @@ const MoonSchema = mongoose.Schema({
         type: Number,
         default: 300
     },
-    parentPlanet: String
+    parentPlanet: {
+        type: String,
+        required: "Moon must have a parent planet!",
+    }
     
 }, {
     timestamps: true // createdAt, updatedAt

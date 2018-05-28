@@ -42,17 +42,72 @@
 			<div class="header">
 				<div class="contact">
 					<h1>Add article</h1>
-					<form action="/add">
-						<input type="text" name="title" value="Title" onblur="this.value=!this.value?'Title':this.value;" onfocus="this.select()" onclick="this.value='';">
-					    <select name="typeofobject">
+
+					<form action="/add" method="post">
+						<input type="text" name="title" placeholder="Title*">
+
+                        <p>Type of space object:</p>
+					    <select name="type">
 							<option value="planet" selected>Planet</option>
 							<option value="moon">Moon</option>
 						</select>		
 
-						<input type="text" name="planet" value="Planet" onblur="this.value=!this.value?'planet':this.value;" onfocus="this.select()" onclick="this.value='';">
-						
+						<input type="number" name="diameter" placeholder="diameter, km">
+						<input type="number" name="day" step="0.1" placeholder="day, in hours">
+						<input type="number" name="gravity" step="0.1" placeholder="gravity">
+						<input type="number" name="temperature" min="-273" placeholder="temperature, celsius">
                         
-						<textarea name="article" cols="50" rows="7">Article</textarea>
+						<p>Water:</p>
+						<select name="water">
+							<option value="No water" selected>No water</option>
+							<option value="Some water">Some water</option>
+							<option value="Water world">Water world</option>
+						</select>	
+
+                        <p>Radiation:</p>
+						<select name="radiation">
+							<option value="Low">Low</option>
+							<option value="Middle" selected>Middle</option>
+							<option value="High">High</option>
+						</select>	
+
+						<p>Magnetosphere:</p>
+						<p>
+							<label>Yes
+								<input type="radio" name="magnetosphere" value="true" />
+							</label> 
+							<label>No
+								<input type="radio" name="magnetosphere" value="false" />
+							</label>
+                        </p>
+
+						<p>Atmosphere:</p>
+						<p>
+							<label>Yes
+								<input type="radio" name="atmosphere" value="true" />
+							</label> 
+							<label>No
+								<input type="radio" name="atmosphere" value="false" />
+							</label>
+                        </p>
+                        
+                        <fieldset>
+                            <legend><p>Specials for planets:</p></legend>
+							<input type="number" name="year" placeholder="year, in days">
+							<input type="number" name="distanseFromStar" placeholder="Distanse from parent star, mln km">
+						</fieldset>
+
+						<fieldset>
+                            <legend><p>Specials for moons:</p></legend>
+							<input type="number" name="distanseFromParentPlanet" placeholder="Distanse from parent planet, thousands km">
+							<input type="text" name="parentPlanet" placeholder="Parent planet ">
+						</fieldset>
+
+						{# <label for="atmosphere">Atmosphere
+						    <input type="radio" id="atmosphere" name="atmosphere">
+						</label> #}
+                        
+						<textarea name="description" cols="50" rows="7">Description*</textarea>
 						<input type="submit" value="Send" id="submit">
 					</form>
 				</div>
