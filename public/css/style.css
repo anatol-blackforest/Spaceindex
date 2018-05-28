@@ -199,7 +199,6 @@ img {
 	text-align: center;
 	text-transform: uppercase;
 	/* width: 503px; */
-	z-index: 60;
 }
 #body.home .header div h2 {
 	color: #FFFFFF;
@@ -247,7 +246,7 @@ img {
 	font-size: 23px;
 	font-weight: normal;
 	line-height: 23px;
-	margin: 96px 0 0;
+	margin: 0;
  *margin: 102px 0 0;/* Needed for IE8 and old versions */
 	min-height: 27px;
 	padding: 17px 0 10px;
@@ -1241,7 +1240,7 @@ img {
 	padding: 0;
 	width: 461px;
 }
-#body .header div form input {
+#body .header div form input, #body .header div form select {
 	background-color: #A3A3A3;
 	border: medium none;
 	color: #000000;

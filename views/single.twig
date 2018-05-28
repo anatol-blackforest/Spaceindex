@@ -4,25 +4,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>proj1 - Space Science Website Template</title>
-	<link rel="stylesheet" href="css/style.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/mobile.css">
-	<script src="js/mobile.js" type="text/javascript"></script>
+	<title>{{object.title}} - Space Science Website Template</title>
+	<link rel="stylesheet" href="/css/style.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="/css/mobile.css">
+	<script src="/js/mobile.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="page">
         <div id="header">
 			<div>
-				<a href="/" class="logo"><img src="images/logo.png" alt=""></a>
+				<a href="/" class="logo"><img src="/images/logo.png" alt=""></a>
 				<ul id="navigation">
-					<li class="selected">
+					<li class="menu">
 						<a href="/">Home</a>
 					</li>
 					<li class="menu">
 						<a href="/about">About</a>
 					</li>
-					<li class="menu">
-						<a href="/">Objects</a>
+					<li class="menu selected">
+						<a href="/planets">Objects</a>
 						<ul class="primary">
 							<li>
 								<a href="/planets">Planets</a>
@@ -41,11 +41,35 @@
 		<div id="body">
 			<div class="header">
 				<div>
-					<h1>Proj 1</h1>
+					<h1>{{object.title}}</h1>
 					<img src="images/moon-landing.jpg" alt="">
-					<h2>LUNAR LANDER 2023</h2>
-					<p>Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What’s more, they’re absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the Terms of Use. You can even remove all our links if you want to.</p>
-					<p>Looking for more templates? Just browse through all our Free Website Templates and find what you’re looking for. But if you don’t find any website template you can use, you can try our Free Web Design service and tell us all about it. Maybe you’re looking for something different, something special.</p>
+
+					{% if object.parentPlanet %}
+					    <h2>Parent planet: <a href="/planets/{{object.parentPlanet}}">{{object.parentPlanet}}</a></h2>
+						<p>Distance from {{object.parentPlanet}}: {{object.distanseFromParentPlanet}}</p>
+                    {% endif %}
+
+				
+					{% if category == "planets" %}
+						<p>Moons: 
+							{% for moon in object.moons %}
+								<a href="/moons/{{moon.title}}">{{moon.title}}</a>
+							{% endfor %}
+						</p>
+                    {% endif %}
+
+					<p>Diameter: {{object.diameter}}</p>
+					<p>Day: {{object.day}}</p>
+					<p>Gravity: {{object.gravity}}</p>
+					<p>Temperature: {{object.temperature}}</p>
+					<p>Water: {{object.water}}</p>
+					<p>Radiation: {{object.radiation}}</p>
+					<p>Magnetosphere: {{object.magnetosphere}}</p>
+					<p>Atmosphere: {{object.atmosphere}}</p>
+
+					<p>Created: {{object.createdAt}}</p>
+					<p>Updated: {{object.createdAt}}</p>
+
 				</div>
 			</div>
 		</div>

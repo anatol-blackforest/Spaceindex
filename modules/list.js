@@ -12,6 +12,5 @@ module.exports = async (req, res, category) => {
             break
         }
     }
-    objects.forEach(item => console.log(item))
     res.render('index', { objects, moons, category });
 }

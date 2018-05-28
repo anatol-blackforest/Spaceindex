@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 const {connection} = require('./modules');
 
-const index = require('./routes/index');
+const home = require('./routes/home');
 const about = require('./routes/about');
 const add = require('./routes/add');
 const planets = require('./routes/planets');
@@ -26,13 +26,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(async(req, res, next) => await connection(req, next));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use(async(req, res, next) => await connection(req, next))
+
+app.use('/', home);
+app.use('/about', about);
 app.use('/planets', planets);
 app.use('/moons', moons);
-app.use('/about', about);
 app.use('/add', add);
 
 // catch 404 and forward to error handler

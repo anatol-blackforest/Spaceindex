@@ -6,7 +6,9 @@ const AstroBodySchema = {
     title: {
         type: String,
         required: "Planet or moon must have a title!",
-        unique: true
+        unique: true,
+        lowercase:  true, 
+        trim: true
     },
     description: {
         type: String,

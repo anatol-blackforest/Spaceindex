@@ -4,10 +4,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>projects - Space Science Website Template</title>
-	<link rel="stylesheet" href="css/style.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/mobile.css">
-	<script src="js/mobile.js" type="text/javascript"></script>
+	<title>{{category}} - Space Science Website Template</title>
+	<link rel="stylesheet" href="/css/style.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="/css/mobile.css">
+	<script src="/js/mobile.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="page">
@@ -15,14 +15,14 @@
 			<div>
 				<a href="/" class="logo"><img src="images/logo.png" alt=""></a>
 				<ul id="navigation">
-					<li class="selected">
+					<li class="menu">
 						<a href="/">Home</a>
 					</li>
 					<li class="menu">
 						<a href="/about">About</a>
 					</li>
-					<li class="menu">
-						<a href="/">Objects</a>
+					<li class="menu selected">
+						<a href="/planets">Objects</a>
 						<ul class="primary">
 							<li>
 								<a href="/planets">Planets</a>
@@ -65,21 +65,20 @@
 							<li>
 								<div>
 									<h1>{{item.title}}</h1>
-
                                     {% if category == "planets" %}
 										<p>Moons: 
 											{% for moon in item.moons %}
-											    <a href="moons/{{moon._id}}">{{moon.title}}</a>
+											    <a href="/moons/{{moon.title}}">{{moon.title}}</a>
 											{% endfor %}
 										</p>
                                     {% else %}
-										<p>Parent planet: {{item.parentPlanet}}</p>
+										<p>Parent planet: <a href="/planets/{{item.parentPlanet}}" >{{item.parentPlanet}}</a></p>
                                     {% endif %}
                                     <p>Description: {{item.description}}</p>
                                     {% if category == "planets" %}
-									<a href="planetes/{{item._id}}" class="more">Read More</a>
+									<a href="/planets/{{item.title}}" class="more">Read More</a>
 									{% else %}
-									<a href="moons/{{item._id}}" class="more">Read More</a>
+									<a href="/moons/{{item.title}}" class="more">Read More</a>
 									{% endif %}
 								</div>
 							</li>
