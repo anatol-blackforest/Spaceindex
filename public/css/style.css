@@ -1323,7 +1323,7 @@ label{
 	text-transform: uppercase;
 	width: 441px;
 }
-#body .header div form input#submit {
+#body .header div form input[type="submit"] {
 	background-color: #3c0f38;
 	color: #ffffff;
 	cursor: pointer;

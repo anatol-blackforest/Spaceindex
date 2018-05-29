@@ -13,7 +13,6 @@ const AstroBodySchema = {
     },
     image: {
         type: String,
-        unique: true,
         lowercase:  true, 
         trim: true
     },
@@ -55,6 +54,10 @@ const AstroBodySchema = {
     atmosphere: {
         type: Boolean,
         default: false
+    },
+    atmosphericDensity: {
+        type: Number,
+        default: 1
     }
 }
 

@@ -11,18 +11,18 @@
 					<div class="contact">
 						<h1>{{title}}</h1>
 
-						<form action="/add" method="post" enctype="multipart/form-data">
-							<input type="text" name="title" placeholder="Title*">
+						<form action="/add" id="upload" method="post" enctype="multipart/form-data">
+							<input type="text" name="title" id="title" placeholder="Title*">
 
 							<p>Type of space object:</p>
-							<select name="type">
+							<select name="type" id="type">
 								<option value="planet" selected>Planet</option>
 								<option value="moon">Moon</option>
 							</select>		
 
 							<input type="number" name="diameter" placeholder="diameter, km">
-							<input type="number" name="day" step="0.1" placeholder="day, in hours">
-							<input type="number" name="gravity" step="0.1" placeholder="gravity">
+							<input type="number" name="day" min="1" step="0.1" placeholder="day, in hours">
+							<input type="number" name="gravity" min="0" step="0.1" placeholder="gravity">
 							<input type="number" name="temperature" min="-273" placeholder="temperature, celsius">
 							
 							<p>Water:</p>
@@ -58,6 +58,9 @@
 									<input type="radio" name="atmosphere" value="false" />
 								</label>
 							</p>
+
+							<p>Atmospheric density: {{object.atmosphericDensity}}</p>
+							<input type="number" name="atmosphericDensity" min="0" step="0.1" placeholder="Atmospheric density, in part of Earth density...">
 							
 							<fieldset>
 								<legend><p>Specials for planets:</p></legend>
@@ -68,13 +71,13 @@
 							<fieldset>
 								<legend><p>Specials for moons:</p></legend>
 								<input type="number" name="distanseFromParentPlanet" placeholder="Distanse from parent planet, thousands km">
-								<input type="text" name="parentPlanet" placeholder="Parent planet ">
+								<input type="text" name="parentPlanet" id="parentPlanet" placeholder="Parent planet ">
 							</fieldset>
 							
 							<p>Image (2MB max): <input type="file" name="image"></p>
 
-							<textarea name="description" cols="50" rows="7">Description*</textarea>
-							<input type="submit" value="Send" id="submit">
+							<textarea name="description" id="description" cols="50" rows="7">Description*</textarea>
+							<input type="submit" value="Send">
 						</form>
 					</div>
 				</div>
