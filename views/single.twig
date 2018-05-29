@@ -10,31 +10,31 @@
 				<div class="header">
 					<div>
 						<h1>{{object.title}}</h1>
-						<p><img src="/images/moon-landing.jpg" alt=""></p>
+						<img class="bigspaceimg" src="/uploades/{{object.image}}" alt="{{object.title}}">
 
 						{% if object.parentPlanet %}
 							<h2>Parent planet: <a href="/planets/{{object.parentPlanet}}">{{object.parentPlanet}}</a></h2>
-							<p>Distance from {{object.parentPlanet}}: {{object.distanseFromParentPlanet}}</p>
+							<h2>Distance from {{object.parentPlanet}}: {{object.distanseFromParentPlanet}}</h2>
 						{% endif %}
 
 						{% if category == "planets" %}
-							<p>Moons: <br />
+							<h2>Moons: <br />
 								{% for moon in object.moons %}
 									<a href="/moons/{{moon.title}}">{{moon.title}}</a>
 								{% endfor %}
-							</p>
+							</h2>
 						{% endif %}
 
-						<p>Diameter: {{object.diameter}}</p>
-						<p>Day: {{object.day}}</p>
-						<p>Gravity: {{object.gravity}}</p>
-						<p>Temperature: {{object.temperature}}</p>
-						<p>Water: {{object.water}}</p>
-						<p>Radiation: {{object.radiation}}</p>
-						<p>Magnetosphere: {{object.magnetosphere}}</p>
-						<p>Atmosphere: {{object.atmosphere}}</p>
-						<p>Description: <br />
-						{{object.description}}</p>
+						<h2>Diameter: {{object.diameter}}</h2>
+						<h2>Day: {{object.day}}</h2>
+						<h2>Gravity: {{object.gravity}}</h2>
+						<h2>Temperature: {{object.temperature}}</h2>
+						<h2>Water: {{object.water}}</h2>
+						<h2>Radiation: {{object.radiation}}</h2>
+						<h2>Magnetosphere: {{object.magnetosphere}}</h2>
+						<h2>Atmosphere: {{object.atmosphere}}</h2>
+						<h2>Description: <br /></h2>
+						<p>{{object.description}}</p>
 
 						<p>Created: {{object.createdAt}}<br />
 						Updated: {{object.updatedAt}}</p>

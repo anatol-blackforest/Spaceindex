@@ -11,7 +11,7 @@
 					<div class="contact">
 						<h1>{{title}}</h1>
 
-						<form action="/add" method="post">
+						<form action="/add" method="post" enctype="multipart/form-data">
 							<input type="text" name="title" placeholder="Title*">
 
 							<p>Type of space object:</p>
@@ -71,6 +71,8 @@
 								<input type="text" name="parentPlanet" placeholder="Parent planet ">
 							</fieldset>
 							
+							<p>Image (2MB max): <input type="file" name="image"></p>
+
 							<textarea name="description" cols="50" rows="7">Description*</textarea>
 							<input type="submit" value="Send" id="submit">
 						</form>

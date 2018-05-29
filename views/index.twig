@@ -14,10 +14,9 @@
 							<ul>
 								{% for item in objects %}
 								<li>
-									<div class="article">
+								    <a href="/moons/{{item.title}}"><img class="spaceimg" src="/uploades/{{item.image}}" alt="{{item.title}}"></a>
+									<div>
 										<h1>{{item.title}}</h1>
-										<span>{{item.createdAt}}</span>
-	
 										<p>Description: {{item.description}}</p>
 										{% if category == "planets" %}
 										<a href="/planets/{{item.title}}" class="more">Read More</a>

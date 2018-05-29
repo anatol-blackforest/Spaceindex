@@ -1,8 +1,9 @@
 //добавляем небесное тело
 let {Planet, Moon} = require('./schema.js');
 
-module.exports = async ({body}, res) => {
+module.exports = async ({file, body}, res) => {
     try{
+        if(file && file.filename) body.image = file.filename
         switch(body.type){
             //добавляем планету
             case "planet" : {
@@ -35,6 +36,6 @@ module.exports = async ({body}, res) => {
         }
     }catch(err){
         console.log(err)
-        res.render('add', { title: 'Add' });
+        res.render('add', { title: err });
     }
 }

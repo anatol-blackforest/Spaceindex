@@ -883,7 +883,13 @@ img {
 #body .header div h2 a{
 	color: #fff;
 }
-
+.spaceimg{
+	max-width: 380px
+}
+#body .header div img.bigspaceimg{
+	max-width: 940px;
+	margin-bottom:50px
+}
 #body .header div p {
 	color: #FFFFFF;
 	display: block;
@@ -908,6 +914,24 @@ img {
 	text-align: center;
 	width: 100%;
 }
+button.delete, input[type="file"] {
+    background-color: #3c0f38;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: normal;
+    height: 31px;
+    line-height: 31px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 120px;
+}
+
 fieldset{
 	margin: 20px 0
 }

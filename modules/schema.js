@@ -11,6 +11,12 @@ const AstroBodySchema = {
         lowercase:  true, 
         trim: true
     },
+    image: {
+        type: String,
+        unique: true,
+        lowercase:  true, 
+        trim: true
+    },
     description: {
         type: String,
         required: "Please, describe this planet or planetoid!"
