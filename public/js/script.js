@@ -13,8 +13,8 @@ document.addEventListener("click", function(e){
           } else {
             console.log("GO!");
             console.log(xhr.status + ': ' + xhr.statusText);
-            location.href = "/404"
           }
         }
+        location.href = "/"
     }
   });
