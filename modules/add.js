@@ -20,9 +20,7 @@ module.exports = async ({body}, res) => {
                 let moon = new Moon(body)
                 moon.parentPlanet = parentPlanet
                 await moon.save()
-                console.log(parentPlanet)
                 let planet = await Planet.findOne({title: parentPlanet})
-                console.log(planet)
                 planet.moons.push(moon._id)
                 await Planet.update({title: parentPlanet}, {$set: planet})
                 break

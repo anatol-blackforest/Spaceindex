@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-let add = require('../modules/add');
+const add = require('../modules/add');
 
 /* GET users listing. */
 
