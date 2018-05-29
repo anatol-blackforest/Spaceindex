@@ -1,19 +1,22 @@
-
+//добавляем небесное тело
 let {Planet, Moon} = require('./schema.js');
 
 module.exports = async ({body}, res) => {
     try{
         switch(body.type){
+            //добавляем планету
             case "planet" : {
                 delete body.type
                 delete body.parentPlanet
                 delete body.distanseFromParentPlanet
                 let planet = new Planet(body);
+                //подвешиваем готовые спутники
                 planet.moons = await Moon.find({parentPlanet: body.title})
                 await planet.save();
                 res.redirect(`/planets/${body.title}`);
                 break
             }
+            //добавляем спутник
             case "moon" : {
                 delete body.type
                 delete body.year
@@ -22,6 +25,7 @@ module.exports = async ({body}, res) => {
                 let moon = new Moon(body)
                 moon.parentPlanet = parentPlanet
                 await moon.save()
+                //вешаем спутник на орбиту материнской планеты
                 let planet = await Planet.findOne({title: parentPlanet})
                 planet.moons.push(moon._id)
                 await Planet.update({title: parentPlanet}, {$set: planet})

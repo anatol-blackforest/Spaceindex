@@ -1,3 +1,4 @@
+//выводим список планет или спутников
 let {Planet, Moon} = require('./schema.js');
 
 module.exports = async (req, res, category) => {

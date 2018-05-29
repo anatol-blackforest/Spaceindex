@@ -10,11 +10,12 @@ document.addEventListener("click", function(e){
           if (xhr.readyState != 4) return;
           if (xhr.status != 200) {
             console.log(xhr.status + ': ' + xhr.statusText);
+            location.href = "/planets"
           } else {
             console.log("GO!");
             console.log(xhr.status + ': ' + xhr.statusText);
+            location.href = "/planets"
           }
         }
-        location.href = "/"
     }
   });
