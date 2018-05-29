@@ -884,7 +884,8 @@ img {
 	color: #fff;
 }
 .spaceimg{
-	max-width: 380px
+	max-width: 380px;
+	max-height: 380px
 }
 #body .header div img.bigspaceimg{
 	max-width: 940px;
