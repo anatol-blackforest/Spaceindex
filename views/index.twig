@@ -9,12 +9,19 @@
 			<div id="body">
 				<div class="header">
 					<div>
+					    {% if hint %}
+					        <h2>{{hint}}</h2>
+						{% endif %}
 						{% if objects %}
 						    <h1>{{category}}</h1>
 							<ul>
 								{% for item in objects %}
 								<li>
-								    <a href="/moons/{{item.title}}"><img class="spaceimg" src="/uploades/{{item.image}}" alt="{{item.title}}"></a>
+									{% if item.image %}
+										<a href="/moons/{{item.title}}"><img class="spaceimg" src="/uploades/{{item.image}}" alt="{{item.title}}"></a>
+									{% else %}
+										<a href="/moons/{{item.title}}"><img class="spaceimg" src="/uploades/noimage.png" alt="{{item.title}}"></a>
+									{% endif %}
 									<div>
 										<h1>{{item.title}}</h1>
 										<p>Description: {{item.description}}</p>

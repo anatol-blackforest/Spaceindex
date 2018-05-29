@@ -6,9 +6,9 @@ const {bigImage, notImage, sitename} = require('./messages');
 //typeOfEdit - тип формы (редактирование или добавление нового)
 module.exports = (err, req, res, typeOfEdit) => {
 	//если рисунок огромен, то предупреждаем
-	if (err) return res.render('planets', { title: bigImage });
+	if (err) return res.render('index', { hint: bigImage });
 	//если загруженный файл - НЕ рисунок
-	if (req.file && req.file.mimetype && req.file.mimetype.indexOf('image') === -1) return res.render('planets', { title: notImage }); 
+	if (req.file && req.file.mimetype && req.file.mimetype.indexOf('image') === -1) return res.render('index', { hint: notImage }); 
 	//если заливка валидирована
 	switch(typeOfEdit){
 		//при добавлении

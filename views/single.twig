@@ -10,7 +10,12 @@
 				<div class="header">
 					<div>
 						<h1>{{object.title}}</h1>
-						<img class="bigspaceimg" src="/uploades/{{object.image}}" alt="{{object.title}}">
+
+						{% if object.image %}
+						    <img class="bigspaceimg" src="/uploades/{{object.image}}" alt="{{object.title}}">
+					    {% else %}
+						    <img class="bigspaceimg" src="/uploades/noimage.png" alt="{{object.title}}">
+						{% endif %}
 
 						{% if object.parentPlanet %}
 							<h2>Parent planet: <a href="/planets/{{object.parentPlanet}}">{{object.parentPlanet}}</a></h2>
