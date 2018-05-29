@@ -879,6 +879,11 @@ img {
 	text-transform: uppercase;
 	width: 780px;
 }
+
+#body .header div h2 a{
+	color: #fff;
+}
+
 #body .header div p {
 	color: #FFFFFF;
 	display: block;

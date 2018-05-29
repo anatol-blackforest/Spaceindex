@@ -1,28 +1,28 @@
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
-{% include 'head.twig' %}
-<body>
-	<div id="page">
-	    {% set selected = "about" %}
-		{% include 'navigation.twig' with selected %}
-		<div id="body" class="about">
-			<div class="header">
-				<div>
-					<h1>About</h1>
-					<h2>We Have Free Templates for Everyone</h2>
-					<p>Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What’s more, they’re absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the <a href="https://freewebsitetemplates.com/about/terms/">Terms of Use</a>. You can even remove all our links if you want to.</p>
+	{% include 'head.twig' %}
+	<body>
+		<div id="page">
+			{% set selected = "about" %}
+			{% include 'navigation.twig' with selected %}
+			<div id="body" class="about">
+				<div class="header">
+					<div>
+						<h1>About</h1>
+						<h2>We Have Free Templates for Everyone</h2>
+						<p>Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What’s more, they’re absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the <a href="https://freewebsitetemplates.com/about/terms/">Terms of Use</a>. You can even remove all our links if you want to.</p>
+					</div>
+				</div>
+				<div class="footer">
+					<div>
+						<img src="images/space-shuttle.png" alt="">
+						<h2>Be Part of Our Community</h2>
+						<p>If you’re experiencing issues and concerns about this website template, join the discussion <a href="https://freewebsitetemplates.com/forums/">on our forum</a> and meet other people in the community who share the same interests with you.</p>
+					</div>
 				</div>
 			</div>
-			<div class="footer">
-				<div>
-					<img src="images/space-shuttle.png" alt="">
-					<h2>Be Part of Our Community</h2>
-					<p>If you’re experiencing issues and concerns about this website template, join the discussion <a href="https://freewebsitetemplates.com/forums/">on our forum</a> and meet other people in the community who share the same interests with you.</p>
-				</div>
-			</div>
+			{% include 'footer.twig' %}
 		</div>
-		{% include 'footer.twig' %}
-	</div>
-</body>
+	</body>
 </html>

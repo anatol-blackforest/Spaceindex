@@ -9,7 +9,9 @@ module.exports = async ({body}, res) => {
                 delete body.parentPlanet
                 delete body.distanseFromParentPlanet
                 let planet = new Planet(body);
+                planet.moons = await Moon.find({parentPlanet: body.title})
                 await planet.save();
+                res.redirect(`/planets/${body.title}`);
                 break
             }
             case "moon" : {
@@ -23,10 +25,10 @@ module.exports = async ({body}, res) => {
                 let planet = await Planet.findOne({title: parentPlanet})
                 planet.moons.push(moon._id)
                 await Planet.update({title: parentPlanet}, {$set: planet})
+                res.redirect(`/moons/${body.title}`);
                 break
             }
         }
-        res.render('add', { title: 'Add' });
     }catch(err){
         console.log(err)
         res.render('add', { title: 'Add' });

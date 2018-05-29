@@ -1,18 +1,22 @@
 let {Planet, Moon} = require('./schema.js');
 
-module.exports = async ({params}, res, category) => {
-    console.log("we here")
-    let object
-    switch(category){
-        case "planets" : {
-            object = await Planet.findOne({title: params.planete}).populate('moons')
-            break
+module.exports = async ({params: {title}}, res, category) => {
+    try{
+        let object
+        switch(category){
+            case "planets" : {
+                object = await Planet.findOne({title}).populate('moons')
+                break
+            }
+            case "moons" : {
+                object = await Moon.findOne({title})
+                break
+            }
         }
-        case "moons" : {
-            object = await Moon.findOne({title: params.moon})
-            break
-        }
+        if(!object) throw new Error()
+        res.render('single', { object, category });
+    }catch(err){
+        console.log(err)
+        res.render('error');
     }
-    console.log(object)
-    res.render('single', { object, category });
 }

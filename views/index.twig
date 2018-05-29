@@ -1,44 +1,38 @@
 <!doctype html>
 <!-- Website template by freewebsitetemplates.com -->
 <html>
-{% include 'head.twig' %}
-<body>
-	<div id="page">
-	    {% set selected = "planets" %}
-		{% include 'navigation.twig' with selected %}
-		<div id="body">
-			<div class="header">
-				<div>
-                    {% if objects %}
-						<ul>
-							{% for item in objects %}
-							<li>
-								<div>
-									<h1>{{item.title}}</h1>
-                                    {% if category == "planets" %}
-										<p>Moons: 
-											{% for moon in item.moons %}
-											    <a href="/moons/{{moon.title}}">{{moon.title}}</a>
-											{% endfor %}
-										</p>
-                                    {% else %}
-										<p>Parent planet: <a href="/planets/{{item.parentPlanet}}" >{{item.parentPlanet}}</a></p>
-                                    {% endif %}
-                                    <p>Description: {{item.description}}</p>
-                                    {% if category == "planets" %}
-									<a href="/planets/{{item.title}}" class="more">Read More</a>
-									{% else %}
-									<a href="/moons/{{item.title}}" class="more">Read More</a>
-									{% endif %}
-								</div>
-							</li>
-							{% endfor %}
-						</ul>
-					{% endif %}
+	{% include 'head.twig' %}
+	<body>
+		<div id="page">
+			{% set selected = "planets" %}
+			{% include 'navigation.twig' with selected %}
+			<div id="body">
+				<div class="header">
+					<div>
+						{% if objects %}
+						    <h1>{{category}}</h1>
+							<ul>
+								{% for item in objects %}
+								<li>
+									<div class="article">
+										<h1>{{item.title}}</h1>
+										<span>{{item.createdAt}}</span>
+	
+										<p>Description: {{item.description}}</p>
+										{% if category == "planets" %}
+										<a href="/planets/{{item.title}}" class="more">Read More</a>
+										{% else %}
+										<a href="/moons/{{item.title}}" class="more">Read More</a>
+										{% endif %}
+									</div>
+								</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</div>
 				</div>
 			</div>
+			{% include 'footer.twig' %}
 		</div>
-		{% include 'footer.twig' %}
-	</div>
-</body>
+	</body>
 </html>

@@ -5,7 +5,7 @@ const add = require('../modules/add');
 /* GET users listing. */
 
 router.get('/', (req, res, next) => {
-  res.render('add', { title: 'Express' });
+  res.render('add', { title: 'Add' });
 });
 
 router.post('/', (req, res, next) => {
