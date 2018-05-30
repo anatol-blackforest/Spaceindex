@@ -1,7 +1,7 @@
 <!doctype html>
-<!-- Website template by freewebsitetemplates.com -->
 <html>
-	{% include 'head.twig' %}
+    {% set page = "edit" %}
+	{% include 'head.twig' with page %}
 	<body>
 		<div id="page">
 			{% set selected = "planets" %}
@@ -9,43 +9,124 @@
 			<div id="body">
 				<div class="header">
 					<div>
-						<h1>{{object.title}}</h1>
+					    <div id="info" class="show">
+							<h1>{{object.title|escape}}</h1>
 
-						{% if object.image %}
-						    <img class="bigspaceimg" src="/uploades/{{object.image}}" alt="{{object.title}}">
-					    {% else %}
-						    <img class="bigspaceimg" src="/uploades/noimage.png" alt="{{object.title}}">
-						{% endif %}
+							{% if object.image %}
+								<img class="bigspaceimg" src="/uploades/{{object.image|escape}}" alt="{{object.title|escape}}">
+							{% else %}
+								<img class="bigspaceimg" src="/uploades/noimage.png" alt="{{object.title|escape}}">
+							{% endif %}
 
-						{% if object.parentPlanet %}
-							<h2>Parent planet: <a href="/planets/{{object.parentPlanet}}">{{object.parentPlanet}}</a></h2>
-							<h2>Distance from {{object.parentPlanet}}: {{object.distanseFromParentPlanet}}</h2>
-						{% endif %}
+							{% if object.parentPlanet %}
+								<h2>Parent planet: <a href="/planets/{{object.parentPlanet|escape}}">{{object.parentPlanet|escape}}</a></h2>
+								<h2>Distance from {{object.parentPlanet|escape}}: {{object.distanseFromParentPlanet|escape}}</h2>
+							{% endif %}
 
-						{% if category == "planets" %}
-							<h2>Moons: 
-								{% for moon in object.moons %}
-									<a href="/moons/{{moon.title}}">{{moon.title}}</a>
-								{% endfor %}
-							</h2>
-						{% endif %}
+							{% if category == "planets" %}
+								<h2>Moons: 
+									{% for moon in object.moons %}
+										<a href="/moons/{{moon.title|escape}}">{{moon.title|escape}}</a>
+									{% endfor %}
+								</h2>
+							{% endif %}
 
-						<h2>Diameter: {{object.diameter}}</h2>
-						<h2>Day: {{object.day}}</h2>
-						<h2>Gravity: {{object.gravity}}</h2>
-						<h2>Temperature: {{object.temperature}}</h2>
-						<h2>Water: {{object.water}}</h2>
-						<h2>Radiation: {{object.radiation}}</h2>
-						<h2>Magnetosphere: {{object.magnetosphere}}</h2>
-						<h2>Atmosphere: {{object.atmosphere}}</h2>
-						<h2>Atmospheric density: {{object.atmosphericDensity}}</h2>
-						<h2>Description: <br /></h2>
-						<p>{{object.description}}</p>
+							<h2>Diameter: {{object.diameter|escape}}</h2>
+							<h2>Day: {{object.day|escape}}</h2>
+							<h2>Gravity: {{object.gravity|escape}}</h2>
+							<h2>Temperature: {{object.temperature|escape}}</h2>
+							<h2>Water: {{object.water|escape}}</h2>
+							<h2>Radiation: {{object.radiation|escape}}</h2>
+							<h2>Magnetosphere: {{object.magnetosphere|escape}}</h2>
+							<h2>Atmosphere: {{object.atmosphere|escape}}</h2>
+							<h2>Atmospheric density: {{object.atmosphericDensity|escape}}</h2>
+							<h2>Description: <br /></h2>
+							<p>{{object.description|escape}}</p>
 
-						<p>Created: {{object.createdAt}}<br />
-						Updated: {{object.updatedAt}}</p>
+							<p>Created: {{object.createdAt|escape}}<br />
+							Updated: {{object.updatedAt|escape}}</p>
+						
+						</div>
 
-						<p><button data-type="{% if category == "planets" %}planets{% else %}moons{% endif %}" class="delete" id="{{object.title}}">X delete</button></p>
+
+						<form action="/add" id="edit" class="hide" method="put" enctype="multipart/form-data">
+						    <h2>Edit:</h2>
+
+							<input type="text" name="title" id="title" value="{{object.title|escape}}" placeholder="Title*">
+
+							<p>Type of space object:</p>
+							<select name="type" id="type">
+								<option value="planet" {% if object.type == "planet" %}selected{% endif %}>Planet</option>
+								<option value="moon" {% if object.type == "moon" %}selected{% endif %}>Moon</option>
+							</select>		
+
+							<input type="number" value="{{object.diameter|escape}}" name="diameter" placeholder="diameter, km">
+							<input type="number" value="{{object.day|escape}}" name="day" min="1" step="0.1" placeholder="day, in hours">
+							<input type="number" value="{{object.gravity|escape}}" name="gravity" min="0" step="0.1" placeholder="gravity">
+							<input type="number" value="{{object.temperature|escape}}" name="temperature" min="-273" placeholder="temperature, celsius">
+							
+							<p>Water:</p>
+							<select name="water">
+								<option value="No water" {% if object.water == "No water" %}selected{% endif %}>No water</option>
+								<option value="Some water" {% if object.water == "Some water" %}selected{% endif %}>Some water</option>
+								<option value="Water world" {% if object.water == "Water world" %}selected{% endif %}>Water world</option>
+							</select>	
+
+							<p>Radiation:</p>
+							<select name="radiation">
+								<option value="Low" {% if object.radiation == "Low" %}selected{% endif %}>Low</option>
+								<option value="Middle" {% if object.radiation == "Middle" %}selected{% endif %}>Middle</option>
+								<option value="High" {% if object.radiation == "High" %}selected{% endif %}>High</option>
+							</select>	
+
+							<p>Magnetosphere:</p>
+							<p>
+								<label>Yes
+									<input type="radio" name="magnetosphere" value="true" {% if object.magnetosphere == "true" %}checked{% endif %} />
+								</label> 
+								<label>No
+									<input type="radio" name="magnetosphere" value="false" {% if object.magnetosphere == "false" %}checked{% endif %}/>
+								</label>
+							</p>
+
+							<p>Atmosphere:</p>
+							<p>
+								<label>Yes
+									<input type="radio" name="atmosphere" value="true" {% if object.atmosphere == "true" %}checked{% endif %}/>
+								</label> 
+								<label>No
+									<input type="radio" name="atmosphere" value="false" {% if object.atmosphere == "false" %}checked{% endif %}/>
+								</label>
+							</p>
+
+							<p>Atmospheric density: </p>
+							<input type="number" name="atmosphericDensity" min="0" step="0.1"  value="{{object.atmosphericDensity|escape}}" placeholder="Atmospheric density, in part of Earth density...">
+							
+							<fieldset>
+								<legend><p>Specials for planets:</p></legend>
+								<input type="number" name="year" value="{{object.year|escape}}" placeholder="year, in days">
+								<input type="number" name="distanseFromStar" value="{{object.distanseFromStar|escape}}" placeholder="Distanse from parent star, mln km">
+							</fieldset>
+
+							<fieldset>
+								<legend><p>Specials for moons:</p></legend>
+								<input type="number" name="distanseFromParentPlanet" value="{{object.distanseFromParentPlanet|escape}}" placeholder="Distanse from parent planet, thousands km">
+								<input type="text" name="parentPlanet" id="parentPlanet" value="{{object.parentPlanet|escape}}" placeholder="Parent planet ">
+							</fieldset>
+							
+							<p>Image (2MB max): <input type="file" name="image"></p>
+
+							<textarea name="description" id="description" cols="50" rows="7">{{object.description|escape}}</textarea>
+
+                            <p>*required fields</p>
+							
+							<input type="hidden" name="oldTitle" value="{{item.title|escape}}">
+							<input type="hidden" name="edit" value="true">
+
+							<input type="submit" value="Send">
+						</form>
+
+						<p><span id="edit-button">Edit</span><button data-type="{% if category == "planets" %}planets{% else %}moons{% endif %}" class="delete" id="{{object.title|escape}}">X delete</button></p>
 
 					</div>
 				</div>

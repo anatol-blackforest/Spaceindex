@@ -1,7 +1,7 @@
 <!doctype html>
-<!-- Website template by freewebsitetemplates.com -->
 <html>
-	{% include 'head.twig' %}
+    {% set page = "add" %}
+	{% include 'head.twig' with page %}
 	<body>
 		<div id="page">
 			{% set selected = "add" %}
@@ -45,7 +45,7 @@
 									<input type="radio" name="magnetosphere" value="true" />
 								</label> 
 								<label>No
-									<input type="radio" name="magnetosphere" value="false" />
+									<input type="radio" name="magnetosphere" value="false" checked />
 								</label>
 							</p>
 
@@ -55,11 +55,11 @@
 									<input type="radio" name="atmosphere" value="true" />
 								</label> 
 								<label>No
-									<input type="radio" name="atmosphere" value="false" />
+									<input type="radio" name="atmosphere" value="false" checked />
 								</label>
 							</p>
 
-							<p>Atmospheric density: {{object.atmosphericDensity}}</p>
+							<p>Atmospheric density: </p>
 							<input type="number" name="atmosphericDensity" min="0" step="0.1" placeholder="Atmospheric density, in part of Earth density...">
 							
 							<fieldset>
@@ -77,6 +77,9 @@
 							<p>Image (2MB max): <input type="file" name="image"></p>
 
 							<textarea name="description" id="description" cols="50" rows="7">Description*</textarea>
+
+							<p>*required fields</p>
+							
 							<input type="submit" value="Send">
 						</form>
 					</div>

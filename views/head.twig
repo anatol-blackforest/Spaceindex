@@ -4,6 +4,10 @@
 	<title>Space Science Website Template</title>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/css/mobile.css">
-	<script type="text/javascript" src="/js/script.js"></script>
+	{% if page == "add" %}
+		<script type="text/javascript" src="/js/addscript.js"></script>
+	{% elseif page == "edit" %}
+		<script type="text/javascript" src="/js/editscript.js"></script>
+	{% endif %}
 	<script type="text/javascript" src="/js/mobile.js"></script>
 </head>
