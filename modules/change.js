@@ -31,14 +31,15 @@ module.exports = async ({file, body}, res) => {
                 case "moons" : {
                     let moon = await Moon.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(moon, body.image)
-                    let parentPlanet = body.parentPlanet
+                    let {parentPlanet, oldParentPlanet} = body
                     //вешаем спутник на орбиту новой материнской планеты
-                    let planet = await Planet.findOne({title: parentPlanet})
-                    if(planet){
-                        planet.moons.splice(planet.moons.indexOf(moon._id), 1)  
-                        await Planet.update({title: body.oldParentPlanet}, {$set: {moons: planet.moons}})
-                        planet.moons.push(moon._id)
-                        await Planet.update({title: parentPlanet}, {moons: planet.moons})
+                    let oldPlanet = await Planet.findOne({title: oldParentPlanet}).populate("moons")
+                    let newPlanet = await Planet.findOne({title: parentPlanet})
+                    if(newPlanet){
+                        oldPlanet.moons = oldPlanet.moons.filter(item => item.title !== body.title)
+                        await Planet.update({title: oldParentPlanet}, {$set: {moons: oldPlanet.moons}})
+                        newPlanet.moons.push(moon._id)
+                        await Planet.update({title: parentPlanet}, {$set: {moons: newPlanet.moons}})
                     }
                     res.redirect(`/moons/${body.title}`);
                     break
