@@ -20,14 +20,14 @@ module.exports = async ({file, body}, res) => {
         if (file && file.filename) body.image = file.filename
         if (body && body.title && body.description){
             switch(body.type){
-                //добавляем планету
+                //изменяем планету
                 case "planets" : {
                     let planet = await Planet.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(planet, body.image)
                     res.redirect(`/planets/${body.title}`);
                     break
                 }
-                //добавляем спутник
+                //изменяем спутник
                 case "moons" : {
                     let moon = await Moon.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(moon, body.image)
