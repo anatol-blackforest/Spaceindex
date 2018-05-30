@@ -933,7 +933,9 @@ button.delete, button.edit, input[type="file"] {
     text-transform: uppercase;
     width: 120px;
 }
-
+button.delete{
+	float: left
+}
 fieldset{
 	margin: 20px 0
 }

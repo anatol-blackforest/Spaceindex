@@ -82,20 +82,20 @@
 								<p>Magnetosphere:</p>
 								<p>
 									<label>Yes
-										<input type="radio" name="magnetosphere" value="true" {% if object.magnetosphere == "true" %}checked{% endif %} />
+										<input type="radio" name="magnetosphere" value="true" {% if object.magnetosphere %}checked{% endif %} />
 									</label> 
 									<label>No
-										<input type="radio" name="magnetosphere" value="false" {% if object.magnetosphere == "false" %}checked{% endif %}/>
+										<input type="radio" name="magnetosphere" value="false" {% if not object.magnetosphere %}checked{% endif %}/>
 									</label>
 								</p>
 
 								<p>Atmosphere:</p>
 								<p>
 									<label>Yes
-										<input type="radio" name="atmosphere" value="true" {% if object.atmosphere == "true" %}checked{% endif %}/>
+										<input type="radio" name="atmosphere" value="true" {% if object.atmosphere %}checked{% endif %}/>
 									</label> 
 									<label>No
-										<input type="radio" name="atmosphere" value="false" {% if object.atmosphere == "false" %}checked{% endif %}/>
+										<input type="radio" name="atmosphere" value="false" {% if not object.atmosphere %}checked{% endif %}/>
 									</label>
 								</p>
 
@@ -120,7 +120,7 @@
 
 								<p>*required fields</p>
 								
-								<input type="hidden" name="oldTitle" value="{{item.title|escape}}">
+								<input type="hidden" name="oldTitle" value="{{object.title|escape}}"> 
 								<input type="hidden" name="edit" value="true">
 
 								<input type="submit" value="Send">

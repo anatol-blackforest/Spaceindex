@@ -1,17 +1,47 @@
 //изменяем небесное тело
+const fs = require('fs');
+const {promisify} = require('util');
+const path = require('path');
+const stat = promisify(fs.stat);
+
+const {regexp} = require('../config');
 let {Planet, Moon} = require('./schema.js');
 
-module.exports = async ({body, file}, res) => {
+//сносим изображение на диске по ссылке в БД
+const removeImg = async (result, image) => {
+    if(result && result.image && image){
+        await stat(path.join('public', 'uploades', result.image))
+        await fs.unlink(path.join('public', 'uploades', result.image))
+    }
+}
+
+module.exports = async ({file, body}, res) => {   
     try{
-
-
-
-
-        res.redirect(`/`);
-
-
-
-
+        if (file && file.filename) body.image = file.filename
+        if (body && body.title && body.description){
+            switch(body.type){
+                //добавляем планету
+                case "planet" : {
+                    let planet = await Planet.findOneAndUpdate({title: body.oldTitle}, {$set: body})
+                    removeImg(planet, body.image)
+                    res.redirect(`/planets/${body.title}`);
+                    break
+                }
+                //добавляем спутник
+                case "moon" : {
+                    let moon = await Moon.findOneAndUpdate({title: body.oldTitle}, {$set: body})
+                    removeImg(moon, body.image)
+                    let parentPlanet = body.parentPlanet
+                    //вешаем спутник на орбиту новой материнской планеты
+                    let planet = await Planet.findOne({title: parentPlanet})
+                    planet.moons.push(moon._id)
+                    await Planet.update({title: parentPlanet}, {$set: planet})
+                    res.redirect(`/moons/${body.title}`);
+                    break
+                }
+                default : res.redirect(`/`);
+            }
+        }    
     }catch(err){
         console.log(err)
         res.render('index', { title: err });

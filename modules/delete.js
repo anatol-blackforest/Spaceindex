@@ -8,10 +8,10 @@ const {regexp} = require('../config');
 let {Planet, Moon} = require('./schema.js');
 
 //сносим изображение на диске по ссылке в БД
-const removeImg = async image => {
-    if(image){
-        await stat(path.join('public', 'uploades', image))
-        await fs.unlink(path.join('public', 'uploades', image))
+const removeImg = async result => {
+    if(result && result.image){
+        await stat(path.join('public', 'uploades', result.image))
+        await fs.unlink(path.join('public', 'uploades', result.image))
     }
 }
 
@@ -20,22 +20,23 @@ module.exports = async ({params: {title}}, res, category) => {
         switch(category){
             case "planets" : {
                 //сносим планету
-                let {image} = await Planet.findOneAndRemove({title});
-                removeImg(image)
+                let result = await Planet.findOneAndRemove({title});
+                removeImg(result)
                 res.redirect(`/planets/`);
                 break
             }
             case "moons" : {
                 //сносим луну
-                let {parentPlanet, image} = await Moon.findOneAndRemove({title});
-                removeImg(image)
+                let result = await Moon.findOneAndRemove({title});
+                removeImg(result)
                 //по названию материнской планеты возвращаем обновленный список ее спутников
-                parentPlanet = await Planet.findOne({title: parentPlanet}).populate("moons")
+                parentPlanet = await Planet.findOne({title: result.parentPlanet}).populate("moons")
                 const moons = parentPlanet.moons.filter(moon => moon.title !== title)
                 await Planet.update({title: parentPlanet.title}, {$set: {moons}})
                 res.redirect(`/moons/`);
                 break
             }
+            default : res.redirect(`/`);
         }
     }catch(err){
         console.log(err)
