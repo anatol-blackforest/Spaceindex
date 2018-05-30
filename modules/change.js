@@ -21,21 +21,24 @@ module.exports = async ({file, body}, res) => {
         if (body && body.title && body.description){
             switch(body.type){
                 //добавляем планету
-                case "planet" : {
+                case "planets" : {
                     let planet = await Planet.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(planet, body.image)
                     res.redirect(`/planets/${body.title}`);
                     break
                 }
                 //добавляем спутник
-                case "moon" : {
+                case "moons" : {
                     let moon = await Moon.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(moon, body.image)
                     let parentPlanet = body.parentPlanet
                     //вешаем спутник на орбиту новой материнской планеты
                     let planet = await Planet.findOne({title: parentPlanet})
-                    planet.moons.push(moon._id)
-                    await Planet.update({title: parentPlanet}, {$set: planet})
+                    if(planet){
+                        planet.moons.splice(planet.moons.indexOf(moon._id), 1)  
+                        planet.moons.push(moon._id)
+                        await Planet.update({title: parentPlanet}, {$set: planet})
+                    }
                     res.redirect(`/moons/${body.title}`);
                     break
                 }

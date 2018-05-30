@@ -23,8 +23,10 @@ module.exports = async ({file, body}, res) => {
                     await moon.save()
                     //вешаем спутник на орбиту материнской планеты
                     let planet = await Planet.findOne({title: parentPlanet})
-                    planet.moons.push(moon._id)
-                    await Planet.update({title: parentPlanet}, {$set: planet})
+                    if(planet){
+                        planet.moons.push(moon._id)
+                        await Planet.update({title: parentPlanet}, {$set: planet})
+                    }
                     res.redirect(`/moons/${body.title}`);
                     break
                 }

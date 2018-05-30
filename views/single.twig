@@ -54,13 +54,7 @@
 							<form action="/edit" id="edit" class="hide" method="post" enctype="multipart/form-data">
 								<h2>Edit:</h2>
 
-								<input type="text" name="title" id="title" value="{{object.title|escape}}" placeholder="Title*">
-
-								<p>Type of space object:</p>
-								<select name="type" id="type">
-									<option value="planet" {% if not object.parentPlanet %}selected{% endif %}>Planet</option>
-									<option value="moon" {% if object.parentPlanet %}selected{% endif %}>Moon</option>
-								</select>		
+								<input type="text" name="title" id="title" value="{{object.title|escape}}" placeholder="Title*">	
 
 								<input type="number" value="{{object.diameter|escape}}" name="diameter" placeholder="diameter, km">
 								<input type="number" value="{{object.day|escape}}" name="day" min="1" step="0.1" placeholder="day, in hours">
@@ -126,7 +120,8 @@
 								<textarea name="description" id="description" cols="50" rows="7">{{object.description|escape}}</textarea>
 
 								<p>*required fields</p>
-								
+
+								<input type="hidden" name="type" value="{{category|escape}}"> 
 								<input type="hidden" name="oldTitle" value="{{object.title|escape}}"> 
 								<input type="hidden" name="edit" value="true">
 

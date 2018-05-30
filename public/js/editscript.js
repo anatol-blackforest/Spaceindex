@@ -33,17 +33,8 @@ const mInlineJsLoadFunc = function(){
         e.preventDefault();
         if(title.value && description.value){
           if(enabled_post){
-            if(type.value == "moon"){
-              if(parentPlanet.value.trim()){
-                edit.submit()
-                enabled_post = false;
-              }else{
-                alert("Введите материнскую планету!");
-              }
-            }else{
               edit.submit()
               enabled_post = false;
-            }
           }
         }else{
           alert("Введите название и описание!");

@@ -30,9 +30,11 @@ module.exports = async ({params: {title}}, res, category) => {
                 let result = await Moon.findOneAndRemove({title});
                 removeImg(result)
                 //по названию материнской планеты возвращаем обновленный список ее спутников
-                parentPlanet = await Planet.findOne({title: result.parentPlanet}).populate("moons")
-                const moons = parentPlanet.moons.filter(moon => moon.title !== title)
-                await Planet.update({title: parentPlanet.title}, {$set: {moons}})
+                let parentPlanet = await Planet.findOne({title: result.parentPlanet}).populate("moons")
+                if(parentPlanet){
+                    const moons = parentPlanet.moons.filter(moon => moon.title !== title)
+                    await Planet.update({title: parentPlanet.title}, {$set: {moons}})
+                }
                 res.redirect(`/moons/`);
                 break
             }
