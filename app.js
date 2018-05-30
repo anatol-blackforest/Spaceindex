@@ -10,6 +10,7 @@ const {connection} = require('./modules');
 const home = require('./routes/home');
 const about = require('./routes/about');
 const add = require('./routes/add');
+const edit = require('./routes/edit');
 const planets = require('./routes/planets');
 const moons = require('./routes/moons');
 
@@ -35,6 +36,7 @@ app.use('/about', about);
 app.use('/planets', planets);
 app.use('/moons', moons);
 app.use('/add', add);
+app.use('/edit', edit);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -3,6 +3,7 @@ module.exports = {
     bigImage: "Very big image! (2 mb max)", 
     notImage: "Uploaded file not image!",
     addMsg: "Add article",
+    editMsg: "Edit article",
     about: "About",
     success: "Установлено!",
     passLengthHint(length){return `Пароль должен быть не менее ${length} символов!`},
