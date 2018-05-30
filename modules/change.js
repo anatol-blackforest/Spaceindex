@@ -29,7 +29,6 @@ module.exports = async ({file, body}, res) => {
                 }
                 //изменяем спутник
                 case "moons" : {
-                    console.log(body)
                     let moon = await Moon.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(moon, body.image)
                     let parentPlanet = body.parentPlanet
