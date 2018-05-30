@@ -29,6 +29,7 @@ module.exports = async ({file, body}, res) => {
                 }
                 //изменяем спутник
                 case "moons" : {
+                    console.log(body)
                     let moon = await Moon.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(moon, body.image)
                     let parentPlanet = body.parentPlanet
@@ -36,8 +37,9 @@ module.exports = async ({file, body}, res) => {
                     let planet = await Planet.findOne({title: parentPlanet})
                     if(planet){
                         planet.moons.splice(planet.moons.indexOf(moon._id), 1)  
+                        await Planet.update({title: body.oldParentPlanet}, {$set: {moons: planet.moons}})
                         planet.moons.push(moon._id)
-                        await Planet.update({title: parentPlanet}, {$set: planet})
+                        await Planet.update({title: parentPlanet}, {moons: planet.moons})
                     }
                     res.redirect(`/moons/${body.title}`);
                     break
