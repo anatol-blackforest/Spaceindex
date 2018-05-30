@@ -18,7 +18,7 @@
 								<img class="bigspaceimg" src="/uploades/noimage.png" alt="{{object.title|escape}}">
 							{% endif %}
 
-							{% if object.parentPlanet %}
+							{% if category == "moons" %}
 								<h2>Parent planet: <a href="/planets/{{object.parentPlanet|escape}}">{{object.parentPlanet|escape}}</a></h2>
 								<h2>Distance from {{object.parentPlanet|escape}}: {{object.distanseFromParentPlanet|escape}}</h2>
 							{% endif %}
@@ -29,10 +29,12 @@
 										<a href="/moons/{{moon.title|escape}}">{{moon.title|escape}}</a>
 									{% endfor %}
 								</h2>
+								<h2>Distance from parent star: {{object.distanseFromStar|escape}}: {{object.distanseFromStar|escape}}</h2>
+								<h2>Year {{object.year|escape}}: {{object.year|escape}}</h2>
 							{% endif %}
 
-							<h2>Diameter: {{object.diameter|escape}}</h2>
 							<h2>Day: {{object.day|escape}}</h2>
+							<h2>Diameter: {{object.diameter|escape}}</h2>
 							<h2>Gravity: {{object.gravity|escape}}</h2>
 							<h2>Temperature: {{object.temperature|escape}}</h2>
 							<h2>Water: {{object.water|escape}}</h2>
@@ -102,17 +104,22 @@
 								<p>Atmospheric density: </p>
 								<input type="number" name="atmosphericDensity" min="0" step="0.1"  value="{{object.atmosphericDensity|escape}}" placeholder="Atmospheric density, in part of Earth density...">
 								
-								<fieldset>
-									<legend><p>Specials for planets:</p></legend>
-									<input type="number" name="year" value="{{object.year|escape}}" placeholder="year, in days">
-									<input type="number" name="distanseFromStar" value="{{object.distanseFromStar|escape}}" placeholder="Distanse from parent star, mln km">
-								</fieldset>
+								{% if category == "moons" %}
+									<fieldset>
+										<legend><p>Specials for moons:</p></legend>
+										<input type="number" name="distanseFromParentPlanet" value="{{object.distanseFromParentPlanet|escape}}" placeholder="Distanse from parent planet, thousands km">
+										<input type="text" name="parentPlanet" id="parentPlanet" value="{{object.parentPlanet|escape}}" placeholder="Parent planet ">
+									</fieldset>
+							    {% endif %}
 
-								<fieldset>
-									<legend><p>Specials for moons:</p></legend>
-									<input type="number" name="distanseFromParentPlanet" value="{{object.distanseFromParentPlanet|escape}}" placeholder="Distanse from parent planet, thousands km">
-									<input type="text" name="parentPlanet" id="parentPlanet" value="{{object.parentPlanet|escape}}" placeholder="Parent planet ">
-								</fieldset>
+								{% if category == "planets" %}
+									<fieldset>
+										<legend><p>Specials for planets:</p></legend>
+										<input type="number" name="year" value="{{object.year|escape}}" placeholder="year, in days">
+										<input type="number" name="distanseFromStar" value="{{object.distanseFromStar|escape}}" placeholder="Distanse from parent star, mln km">
+									</fieldset>
+                                {% endif %}
+								
 								
 								<p>Image (2MB max): <input type="file" name="image"></p>
 
