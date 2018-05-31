@@ -1,5 +1,5 @@
 //подробная информация об искомой планете или спутнике
-let {Planet, Moon} = require('./schema.js');
+const {Planet, Moon} = require('./schema.js');
 
 module.exports = async ({params: {title}}, res, category) => {
     try{
