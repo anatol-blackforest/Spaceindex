@@ -8,8 +8,6 @@ module.exports = async (req, res) => {
     planets = await Planet.find({title: search})
     moons = await Moon.find({title: search})
     let searchedObjects = [...planets, ...moons]
-    console.log(searchedObjects.length)
-    console.log(notFound)
     if (searchedObjects.length > 0){
         res.render('search', { searchedObjects, title: searchTitle });
     } else {
