@@ -1,11 +1,23 @@
 const mInlineJsLoadFunc = function(){
+  const fieldsetPlanet = document.getElementById("fieldsetPlanet");
+  const fieldsetMoon = document.getElementById("fieldsetMoon");
+  const parentPlanet = document.getElementById("parentPlanet");
+  const description = document.getElementById("description");
   const upload = document.getElementById("upload");
   const title = document.getElementById("title");
-  const description = document.getElementById("description");
   const type = document.getElementById("type");
-  const parentPlanet = document.getElementById("parentPlanet");
 
   let enabled_post = true;
+
+  upload.addEventListener("change", function(e){
+    if(type.value == "planet"){
+      fieldsetPlanet.classList.remove("hide"); 
+      fieldsetMoon.classList.add("hide");   
+    }else{
+      fieldsetPlanet.classList.add("hide"); 
+      fieldsetMoon.classList.remove("hide"); 
+    }
+  })
 
   upload.addEventListener("submit", function(e){
     e.preventDefault();

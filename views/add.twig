@@ -62,16 +62,16 @@
 							<p>Atmospheric density: </p>
 							<input type="number" name="atmosphericDensity" min="0" step="0.1" placeholder="Atmospheric density, in part of Earth density...">
 							
-							<fieldset>
+							<fieldset id="fieldsetPlanet">
 								<legend><p>Specials for planets:</p></legend>
 								<input type="number" name="year" placeholder="year, in days">
 								<input type="number" name="distanseFromStar" placeholder="Distanse from parent star, mln km">
 							</fieldset>
 
-							<fieldset>
+							<fieldset id="fieldsetMoon" class="hide">
 								<legend><p>Specials for moons:</p></legend>
 								<input type="number" name="distanseFromParentPlanet" placeholder="Distanse from parent planet, thousands km">
-								<input type="text" name="parentPlanet" id="parentPlanet" placeholder="Parent planet ">
+								<input type="text" name="parentPlanet" id="parentPlanet" placeholder="Parent planet*">
 							</fieldset>
 							
 							<p>Image (2MB max): <input type="file" name="image"></p>
