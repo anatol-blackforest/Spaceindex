@@ -1,5 +1,5 @@
 //выводим список планет или спутников
-const {Planet, Moon} = require('./schema.js');
+const {Planet, Moon} = require('./schema');
 let {planetPagination, moonPagination, postsPerPage} = require('../config');
 
 const countFunc = async (Schema, res, pagination, category) => {

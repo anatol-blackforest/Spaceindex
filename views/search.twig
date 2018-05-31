@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	{% include 'head.twig' %}
+	<body>
+		<div id="page">
+			{% include 'navigation.twig' %}
+			<div id="body">
+				<div class="header">
+					<div>
+                        <h1>{{title}}</h1>
+						{% if searchedObjects %}
+							<ul>
+								{% for item in searchedObjects %}
+								<li>
+									{% if item.image %}
+										<a href="/moons/{{item.title}}"><img class="spaceimg" src="/uploades/{{item.image}}" alt="{{item.title}}"></a>
+									{% else %}
+										<a href="/moons/{{item.title}}"><img class="spaceimg" src="/uploades/noimage.png" alt="{{item.title}}"></a>
+									{% endif %}
+									<div>
+										<h1>{{item.title}}</h1>
+										<p>Description: {{item.description}}</p>
+										{% if not item.parentPlanet %}
+										<a href="/planets/{{item.title}}" class="more">Read More</a>
+										{% else %}
+										<a href="/moons/{{item.title}}" class="more">Read More</a>
+										{% endif %}
+									</div>
+								</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			{% include 'footer.twig' %}
+		</div>
+	</body>
+</html>

@@ -4,15 +4,17 @@ const uploader = require("./uploader.js")
 const postuploader = require("./postuploader.js")
 const formhandler = require("./formhandler.js")
 const deleteArticle = require("./delete.js")
-const change = require("./change.js")
-const page = require("./page.js")
 const messages = require("./messages.js")
 const current = require("./current.js")
 const schema = require("./schema.js")
+const search = require("./search.js")
+const change = require("./change.js")
+const page = require("./page.js")
 const list = require("./list.js")
 const add = require("./add.js")
 
 module.exports = {
+    search,
     uploader,
     postuploader,
     formhandler,
