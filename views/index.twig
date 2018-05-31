@@ -37,7 +37,7 @@
 							{% if openPager %}
 								<div class="paginator">
 									<div class="allpages">
-										<a href="/{{category}}/page/1">&lt;&lt; First page</a>
+										<a href="/{{category}}/page/1">First page</a>
 										{% set n = pages %}
 										{% for i in range(1, n) %}
 											{% if loop.index == activePage %}
@@ -46,7 +46,7 @@
 												<a href="/{{category}}/page/{{i}}">{{i}}</a>
 											{% endif %}
 										{% endfor %}
-										<a href="/{{category}}/page/{{pages}}">Last page >></a>
+										<a href="/{{category}}/page/{{pages}}">Last page</a>
 									</div>
 								</div>
 							{% endif %}
