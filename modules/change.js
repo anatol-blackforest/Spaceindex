@@ -38,7 +38,7 @@ module.exports = async ({file, body}, res) => {
                     if(newPlanet){
                         oldPlanet.moons = oldPlanet.moons.filter(item => item.title !== body.title)
                         await Planet.update({title: oldParentPlanet}, {$set: {moons: oldPlanet.moons}})
-                        newPlanet.moons.push(moon._id)
+                        if (parentPlanet !== oldParentPlanet) newPlanet.moons.push(moon._id)
                         await Planet.update({title: parentPlanet}, {$set: {moons: newPlanet.moons}})
                     }
                     res.redirect(`/moons/${body.title}`);
