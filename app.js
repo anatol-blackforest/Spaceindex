@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const {connection} = require('./modules');
 
@@ -57,5 +58,8 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//горячее выключение сервера
+process.on('exit', () => mongoose.disconnect())
 
 module.exports = app;

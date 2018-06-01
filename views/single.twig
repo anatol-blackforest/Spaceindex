@@ -26,7 +26,7 @@
 							{% if category == "planets" %}
 								<h2>Moons: 
 									{% for moon in object.moons %}
-										<a href="/moons/{{moon.title|escape}}">{{moon.title|escape}}</a>
+										<a href="/moons/{{moon.title|escape}}">{{moon.title|escape}}</a>, 
 									{% endfor %}
 								</h2>
 								<h2>Distance from parent star: {{object.distanseFromStar|escape}}</h2>
