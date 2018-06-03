@@ -25,7 +25,7 @@
 													<a href="/planets/{{planet.title}}"><img src="/uploades/thumbs/noimage.png" alt="{{planet.title}}"></a>
 												{% endif %}
 												<h1><a href="/planets/{{planet.title}}">{{planet.title}}</a></h1>
-												<span>{{planet.createdAt}}</span>
+												<span>{{planet.createdAt|date("m/d/Y")}}</span>
 												<a href="/planets/{{planet.title}}" class="more">Read More</a>
 											</li>
 										{% endfor %}
@@ -49,7 +49,7 @@
 													<a href="/moons/{{planet.title}}"><img src="/uploades/thumbs/noimage.png" alt="{{moon.title}}"></a>
 												{% endif %}
 												<h1><a href="/moons/{{moon.title}}">{{moon.title}}</a></h1>
-												<span>{{moon.createdAt}}</span>
+												<span>{{moon.createdAt|date("m/d/Y")}}</span>
 												<a href="/moons/{{moon.title}}" class="more">Read More</a>
 											</li>
 										{% endfor %}
