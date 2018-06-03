@@ -1622,6 +1622,9 @@ label{
 	background-color: #620031;
 }
 
+#header div ul#navigation_left{
+	float: left;
+}
 #header div ul#navigation_right{
- float: right;
+    float: right;
 }

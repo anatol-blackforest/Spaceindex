@@ -347,4 +347,10 @@
 		color: #eeeced;
 		text-decoration: none;
 	}
+	#header div ul#navigation_right{
+		float: left;
+		position: relative;
+		right:60px;
+		top: 10px
+	}
 }
