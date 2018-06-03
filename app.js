@@ -20,6 +20,7 @@ const search = require('./routes/search');
 const planets = require('./routes/planets');
 const moons = require('./routes/moons');
 const install = require('./routes/install');
+const login = require('./routes/login');
 const logout = require('./routes/logout');
 
 const app = express();
@@ -50,9 +51,6 @@ passport.use(new LocalStrategy({passReqToCallback : true}, (req, username, passw
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
 
-//авторизация
-app.post('/login/', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/'}))
-
 app.use('/', home);
 app.use('/about', about);
 app.use('/planets', planets);
@@ -61,6 +59,7 @@ app.use('/add', add);
 app.use('/edit', edit);
 app.use('/search', search);
 app.use('/install', install);
+app.use('/login/', login);
 app.use('/logout/', logout);
 
 
