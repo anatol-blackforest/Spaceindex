@@ -12,6 +12,8 @@ const removeImg = async (result, image) => {
     if(result && result.image && image){
         await stat(path.join('public', 'uploades', result.image))
         await fs.unlink(path.join('public', 'uploades', result.image))
+        await stat(path.join('public', 'uploades','thumbs', result.image))
+        await fs.unlink(path.join('public', 'uploades', 'thumbs', result.image))
     }
 }
 

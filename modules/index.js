@@ -11,6 +11,7 @@ const schema = require("./schema")
 const search = require("./search")
 const change = require("./change")
 const page = require("./page")
+const home = require("./home")
 const list = require("./list")
 const add = require("./add")
 const install = require("./install")
@@ -19,6 +20,7 @@ const getAccount = require("./getaccount")
 module.exports = {
     getAccount,
     crypto,
+    home,
     install,
     search,
     uploader,

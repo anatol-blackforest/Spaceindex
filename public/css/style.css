@@ -477,7 +477,7 @@ img {
 	filter: alpha(opacity=70);/* Needed for IE8 and old versions */
 	opacity: 0.7;
 }
-#body.home .footer div ul li ul li h1 {
+#body.home .footer div ul li ul li h1, #body.home .footer div ul li ul li h1 a {
 	color: #A3A3A3;
 	float: left;
 	font-family: audiowide-regular-webfont;
@@ -1627,4 +1627,7 @@ label{
 }
 #header div ul#navigation_right{
     float: right;
+}
+.centered{
+	text-align: center
 }

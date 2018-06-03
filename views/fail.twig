@@ -8,8 +8,13 @@
 				<div class="header">
 					<div>
 						<h1>Error</h1>
-						<div class="article">
-							<h1>{{hint}}</h1>
+						<h2>{{hint}}</h2>
+						<div class="">
+							<form action="/login" method="post">
+								<p><input type="text" name="username" placeholder="Login"></p>
+								<p><input type="password" name="password" placeholder="Password"></p>
+								<input type="submit" value="Send">
+							</form>
 						</div>
 					</div>
 				</div>
