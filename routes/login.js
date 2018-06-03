@@ -7,6 +7,6 @@ const {uploader, postuploader, messages: {addMsg}} = require('../modules');
 /* GET users listing. */
 
 //авторизация
-router.post('/', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/'}))
+router.post('/', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/fail'}))
 
 module.exports = router;

@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const session = require('cookie-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const flash = require("connect-flash");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -22,6 +21,7 @@ const moons = require('./routes/moons');
 const install = require('./routes/install');
 const login = require('./routes/login');
 const logout = require('./routes/logout');
+const failureAuth = require('./routes/failure');
 
 const app = express();
 
@@ -32,7 +32,6 @@ app.set('view engine', 'twig');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -61,7 +60,7 @@ app.use('/search', search);
 app.use('/install', install);
 app.use('/login/', login);
 app.use('/logout/', logout);
-
+app.use('/fail', failureAuth);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

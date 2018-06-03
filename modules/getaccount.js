@@ -7,7 +7,7 @@ module.exports = async (req, adminname, password, done) => {
     try{
         password = crypto(password)
         let admin = await Admin.findOne({adminname, password})
-        return (admin) ? done(null, admin) : done(null, false, req.flash('message', noAuth))
+        return (admin) ? done(null, admin) : done(null, false)
     }catch(err){
         done(null, false)
         console.error(err)
