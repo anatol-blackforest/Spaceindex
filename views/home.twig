@@ -3,8 +3,7 @@
 	{% include 'head.twig' %}
 	<body>
 		<div id="page">
-			{% set selected = "home" %}
-			{% include 'navigation.twig' with selected %}
+			{% include 'navigation.twig' with {selected: "home", isAdmin: isAdmin} %}
 			<div id="body" class="home">
 				<div class="header">
 					<div>

@@ -3,10 +3,14 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
+const session = require('cookie-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const flash = require("connect-flash");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
-const {connection} = require('./modules');
+const {connection, getAccount} = require('./modules');
 
 const home = require('./routes/home');
 const about = require('./routes/about');
@@ -16,6 +20,7 @@ const search = require('./routes/search');
 const planets = require('./routes/planets');
 const moons = require('./routes/moons');
 const install = require('./routes/install');
+const logout = require('./routes/logout');
 
 const app = express();
 
@@ -26,13 +31,27 @@ app.set('view engine', 'twig');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({keys: ['betelgeuse']}));
+app.use(passport.initialize());
+app.use(passport.session());
 
+//коннекты к базе
 app.use(async(req, res, next) => await connection(req, next))
+
+//проверяем админский хэш в сессии
+passport.use(new LocalStrategy({passReqToCallback : true}, (req, username, password, done) => getAccount(req, username, password, done).catch(() => done(null, false))));
+
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
+
+//авторизация
+app.post('/login/', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/'}))
 
 app.use('/', home);
 app.use('/about', about);
@@ -42,6 +61,8 @@ app.use('/add', add);
 app.use('/edit', edit);
 app.use('/search', search);
 app.use('/install', install);
+app.use('/logout/', logout);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

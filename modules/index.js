@@ -14,9 +14,10 @@ const page = require("./page")
 const list = require("./list")
 const add = require("./add")
 const install = require("./install")
-
+const getAccount = require("./getaccount")
 
 module.exports = {
+    getAccount,
     crypto,
     install,
     search,

@@ -1,8 +1,9 @@
 //добавляем небесное тело
 const {Planet, Moon} = require('./schema.js');
 
-module.exports = async ({file, body}, res) => {
+module.exports = async (req, res) => {
     try{
+        let {file, body} = req
         if (file && file.filename) body.image = file.filename
         if (body && body.title && body.description){
             switch(body.type){
@@ -35,6 +36,6 @@ module.exports = async ({file, body}, res) => {
         }
     }catch(err){
         console.log(err)
-        res.render('add', { title: err });
+        res.render('add', { title: err, isAdmin: req.isAuthenticated() });
     }
 }

@@ -4,6 +4,6 @@ const router = express.Router();
 const {about} = require('../modules/messages');
 
 /* GET users listing. */
-router.get('/', (req, res, next) => res.render('about', { title: 'About' }));
+router.get('/', (req, res, next) => res.render('about', { title: 'About', isAdmin: req.isAuthenticated() }));
 
 module.exports = router;

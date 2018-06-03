@@ -6,6 +6,13 @@
                 <input type="submit" value="Send">
             </form>
         </div>
+        <div id="loginBlock" class="hide">
+            <form action="/login" method="post">
+                <p><input type="text" name="username" placeholder="Login"></p>
+                <p><input type="password" name="password" placeholder="Password"></p>
+                <input type="submit" value="Send">
+            </form>
+        </div>
         <a href="/" class="logo"><img src="/images/logo.png" alt=""></a>
         <ul id="navigation">
             <li class="{% if selected == "home" %}selected{% endif %} menu">
@@ -25,12 +32,23 @@
                     </li>
                 </ul>
             </li>
+            {% if isAdmin %}
             <li class="{% if selected == "add" %}selected{% endif %} menu">
                 <a href="/add">Add post</a>
             </li>
-            <li class="menu search">
-                <a href="/" id="searchOpenButton"><img src="/images/search.png" alt=""></a>
-            </li>
+            {% endif %}
         </ul>
+        <ul id="navigation_right">
+            <li class="menu login">
+                {% if not isAdmin %}
+                    <a href="/" id="loginOpenButton" title="Login"><img src="/images/login.png" alt="Login"></a>
+                {% else %}
+                    <a href="/logout" id="logoutButton" title="Logout"><img src="/images/logout.png" alt="Logout"></a>
+                {% endif %}
+            </li>
+            <li class="menu search">
+                <a href="/" id="searchOpenButton" alt="Search"><img src="/images/search.png" alt=""></a>
+            </li>
+        </ul>    
     </div>
 </div>

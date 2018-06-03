@@ -4,8 +4,7 @@
 	{% include 'head.twig' with page %}
 	<body>
 		<div id="page">
-			{% set selected = "add" %}
-			{% include 'navigation.twig' with selected %}
+			{% include 'navigation.twig' with {selected: "add", isAdmin: isAdmin} %}
 			<div id="body">
 				<div class="header">
 					<div class="contact">

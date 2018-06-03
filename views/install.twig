@@ -3,17 +3,14 @@
 	{% include 'head.twig' %}
 	<body>
 		<div id="page">
-			{% include 'navigation.twig' %}
+			{% include 'navigation.twig' with {isAdmin: isAdmin} %}
 			<div id="body">
 				<div class="header">
 					<div class="contact">
-
 						<h1><span>Create admin account</span></h1>
-					
 						{% if hint %}
 							<h2><span>{{hint}}</span></h2>
 						{% endif %}
-
 						<form id="login" name="form" method="post" action="/install/">      
 							<fieldset>
 								<div class="field">
@@ -23,7 +20,6 @@
 								</div>
 							</fieldset>
 						</form>
-				
 					</div>
 				</div>
 			</div>

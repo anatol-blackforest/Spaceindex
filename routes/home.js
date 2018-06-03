@@ -4,6 +4,6 @@ const router = express.Router();
 const {sitename} = require('../modules/messages');
 
 /* GET home page. */
-router.get('/', (req, res) => res.render('home', { title: sitename }));
+router.get('/', (req, res) => res.render('home', { title: sitename, isAdmin: req.isAuthenticated()}));
 
 module.exports = router;

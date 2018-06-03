@@ -4,11 +4,12 @@ const {alreadyInst, enterLogPass, enterLogin, enterPass, passLengthHint, success
 const {passLength} = require('../config');
 const crypto = require('./crypto');
 
-module.exports = async ({body}, res, type) => {
+module.exports = async (req, res, type) => {
     try{
+        let body = req.body
         switch(type){
             case "get" : 
-                res.render("install")
+                res.render("install", {isAdmin: req.isAuthenticated() })
                 break
             case "post" : {
                 //проверяем есть ли адмиин
@@ -30,12 +31,12 @@ module.exports = async ({body}, res, type) => {
                     adminAccount.password = await crypto(body.password);
                     let admin = new Admin(adminAccount);
                     await admin.save(adminAccount)
-                    res.render("install", {hint: success})
+                    res.render("install", {hint: success, isAdmin: req.isAuthenticated()})
                 }
             }
         }
     }catch(err){
-        res.render("error") 
+        res.render("error", {isAdmin: req.isAuthenticated() }) 
         console.error(err)
     }
 };

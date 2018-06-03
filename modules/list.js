@@ -2,7 +2,7 @@
 const {Planet, Moon} = require('./schema');
 let {planetPagination, moonPagination, postsPerPage} = require('../config');
 
-const countFunc = async (Schema, res, pagination, category) => {
+const countFunc = async (Schema, req, res, pagination, category) => {
     let objects, moons, count
     objects = await Schema.find()
     count = objects.length
@@ -11,7 +11,7 @@ const countFunc = async (Schema, res, pagination, category) => {
     pagination.activePage = 1
     let {openPager, pages, activePage} = pagination
     objects = await Schema.find().limit(postsPerPage).sort({createdAt: -1})
-    res.render('index', { objects, moons, category, openPager, pages, activePage });
+    res.render('index', { objects, moons, category, openPager, pages, activePage, isAdmin: req.isAuthenticated() });
 }
 
 module.exports = async (req, res, category) => {
@@ -19,17 +19,17 @@ module.exports = async (req, res, category) => {
         let objects, moons, count
         switch(category){
             case "planets" : {
-                countFunc(Planet, res, planetPagination, category)
+                countFunc(Planet, req, res, planetPagination, category)
                 break
             }
             case "moons" : {
-                countFunc(Moon, res, moonPagination, category)
+                countFunc(Moon, req, res, moonPagination, category)
                 break
             }
             default : res.redirect("/")
         }
     }catch(err){
         console.log(err)
-        res.render('error');
+        res.render('error', {isAdmin: req.isAuthenticated()});
     }
 }

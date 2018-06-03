@@ -1,9 +1,9 @@
 //подробная информация об искомой планете или спутнике
 const {Planet, Moon} = require('./schema.js');
 
-module.exports = async ({params: {title}}, res, category) => {
+module.exports = async (req, res, isAdmin, category) => {
     try{
-        let object
+        let object, title = req.params.title
         switch(category){
             //планета
             case "planets" : {
@@ -18,9 +18,9 @@ module.exports = async ({params: {title}}, res, category) => {
         }
         //если планеты не нашли - попадаем в сумеречную зону 404 :)
         if(!object) throw new Error()
-        res.render('single', { object, category });
+        res.render('single', { object, category, isAdmin });
     }catch(err){
         console.log(err)
-        res.render('error');
+        res.render('error', {isAdmin});
     }
 }

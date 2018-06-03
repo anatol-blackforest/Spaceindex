@@ -3,7 +3,7 @@
 	{% include 'head.twig' %}
 	<body>
 		<div id="page">
-			{% include 'navigation.twig' %}
+			{% include 'navigation.twig' with {isAdmin: isAdmin} %}
 			<div id="body">
 				<div class="header">
 					<div>

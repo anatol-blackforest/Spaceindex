@@ -9,8 +9,8 @@ module.exports = async (req, res) => {
     moons = await Moon.find({title: search})
     let searchedObjects = [...planets, ...moons]
     if (searchedObjects.length > 0){
-        res.render('search', { searchedObjects, title: searchTitle });
+        res.render('search', { searchedObjects, title: searchTitle, isAdmin: req.isAuthenticated() });
     } else {
-        res.render('search', { searchedObjects, title: notFound });
+        res.render('search', { searchedObjects, title: notFound, isAdmin: req.isAuthenticated() });
     }
 }

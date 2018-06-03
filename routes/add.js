@@ -5,7 +5,13 @@ const {uploader, postuploader, messages: {addMsg}} = require('../modules');
 
 /* GET users listing. */
 
-router.get('/', (req, res) => res.render('add', { title: addMsg }));
-router.post('/', (req, res) => uploader(req, res, err => postuploader(err, req, res)));
+router.get('/', (req, res) => {
+    if (!req.isAuthenticated()) return res.render('home', { title: sitename, isAdmin: false });
+    res.render('add', { title: addMsg, isAdmin: true })
+});
+router.post('/', (req, res) => {
+    if (!req.isAuthenticated()) return res.render('home', { title: sitename, isAdmin: false });
+    uploader(req, res, err => postuploader(err, req, res))
+});
 
 module.exports = router;

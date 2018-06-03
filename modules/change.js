@@ -15,8 +15,9 @@ const removeImg = async (result, image) => {
     }
 }
 
-module.exports = async ({file, body}, res) => {   
+module.exports = async (req, res) => {   
     try{
+        let {file, body} = req
         if (file && file.filename) body.image = file.filename
         if (body && body.title && body.description){
             switch(body.type){
@@ -49,6 +50,6 @@ module.exports = async ({file, body}, res) => {
         }    
     }catch(err){
         console.log(err)
-        res.render('index', { title: err });
+        res.render('index', { title: err, isAdmin: req.isAuthenticated()});
     }
 }
