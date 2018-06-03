@@ -16,9 +16,9 @@
 								{% for item in objects %}
 								<li>
 									{% if item.image %}
-										<a href="/moons/{{item.title}}"><img class="spaceimg" src="/uploades/{{item.image}}" alt="{{item.title}}"></a>
+										<a href="/{% if category == "planets" %}planets{% else %}moons{% endif %}/{{item.title}}"><img class="spaceimg" src="/uploades/{{item.image}}" alt="{{item.title}}"></a>
 									{% else %}
-										<a href="/moons/{{item.title}}"><img class="spaceimg" src="/uploades/noimage.png" alt="{{item.title}}"></a>
+										<a href="/{% if category == "planets" %}planets{% else %}moons{% endif %}/{{item.title}}"><img class="spaceimg" src="/uploades/noimage.png" alt="{{item.title}}"></a>
 									{% endif %}
 									<div>
 										<h1>{{item.title}}</h1>
