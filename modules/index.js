@@ -1,19 +1,24 @@
 // сводим модули
-const connection = require("./connection.js")
-const uploader = require("./uploader.js")
-const postuploader = require("./postuploader.js")
-const formhandler = require("./formhandler.js")
-const deleteArticle = require("./delete.js")
-const messages = require("./messages.js")
-const current = require("./current.js")
-const schema = require("./schema.js")
-const search = require("./search.js")
-const change = require("./change.js")
-const page = require("./page.js")
-const list = require("./list.js")
-const add = require("./add.js")
+const connection = require("./connection")
+const crypto = require("./crypto")
+const uploader = require("./uploader")
+const postuploader = require("./postuploader")
+const formhandler = require("./formhandler")
+const deleteArticle = require("./delete")
+const messages = require("./messages")
+const current = require("./current")
+const schema = require("./schema")
+const search = require("./search")
+const change = require("./change")
+const page = require("./page")
+const list = require("./list")
+const add = require("./add")
+const install = require("./install")
+
 
 module.exports = {
+    crypto,
+    install,
     search,
     uploader,
     postuploader,

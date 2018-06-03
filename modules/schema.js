@@ -96,5 +96,20 @@ const MoonSchema = mongoose.Schema({
     timestamps: true // createdAt, updatedAt
 });
 
+//схема аккаунта
+const AdminSchema = mongoose.Schema({
+    adminname:{
+        type: String,
+        minlength: 4,
+        required: "Enter login!"
+    },
+    password: {
+        type: String,
+        required: "Enter password!"
+    }
+    
+});
+
 exports.Planet = mongoose.model('Planet', PlanetSchema);
 exports.Moon = mongoose.model('Moon', MoonSchema);
+exports.Admin = mongoose.model('Admin', AdminSchema);

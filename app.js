@@ -15,6 +15,7 @@ const edit = require('./routes/edit');
 const search = require('./routes/search');
 const planets = require('./routes/planets');
 const moons = require('./routes/moons');
+const install = require('./routes/install');
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use('/moons', moons);
 app.use('/add', add);
 app.use('/edit', edit);
 app.use('/search', search);
+app.use('/install', install);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

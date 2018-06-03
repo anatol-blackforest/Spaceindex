@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	{% include 'head.twig' %}
+	<body>
+		<div id="page">
+			{% include 'navigation.twig' %}
+			<div id="body">
+				<div class="header">
+					<div class="contact">
+
+						<h1><span>Create admin account</span></h1>
+					
+						{% if hint %}
+							<h2><span>{{hint}}</span></h2>
+						{% endif %}
+
+						<form id="login" name="form" method="post" action="/install/">      
+							<fieldset>
+								<div class="field">
+									<input name="adminname" placeholder="adminname" type="text"/>
+									<input name="password" placeholder="password" type="password"/>
+									<input type="submit" value="Install">
+								</div>
+							</fieldset>
+						</form>
+				
+					</div>
+				</div>
+			</div>
+			{% include 'footer.twig' %}
+		</div>
+	</body>
+</html>
