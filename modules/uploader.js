@@ -7,7 +7,7 @@ let storage = multer.diskStorage({
     cb(null, path.join('public', 'tmp'))
   },
   filename (req, file, cb) {
-    cb(null, `spaceindex_${Date.now()}_${file.originalname}`);
+    cb(null, Date.now() + path.extname(file.originalname));
   }
 })
 
