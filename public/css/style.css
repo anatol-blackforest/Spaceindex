@@ -114,7 +114,7 @@ img {
 	position: absolute;
 	top: 60px;
 	width: 142px;
-	z-index: 50;
+	z-index: 150;
 }
 #header div ul li.menu:hover ul.primary {
 	left: 31px;
