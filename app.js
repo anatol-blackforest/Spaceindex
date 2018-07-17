@@ -8,9 +8,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const {home, about, add, edit, search, planets, moons, install, login, logout, failureAuth} = require('./routes');
 const {getAccount} = require('./controllers');
 const {connection} = require('./models');
-const {home, about, add, edit, search, planets, moons, install, login, logout, failureAuth} = require('./routes');
 const {sessionKey} = require('./config');
 
 const app = express();
