@@ -1,6 +1,9 @@
 //Подключение к базе данных
 const mongoose = require('mongoose');
+mongoose.Promise = Promise;
+
 const {mongoUrl} = require('../config');
+
 let connection;
 
 module.exports = async (req, next) => {
