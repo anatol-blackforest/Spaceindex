@@ -1,16 +1,16 @@
-//считываем планеты или луны с базы
-const {Planet, Moon} = require('./schema.js');
+//выводим список планет или спутников
+const {Planet, Moon} = require('../models');
 let {planetPagination, moonPagination, postsPerPage} = require('../config');
 
 const countFunc = async (Schema, req, res, pagination, category) => {
-    let objects, moons, count, num = req.params.num
+    let objects, moons, count
     objects = await Schema.find()
     count = objects.length
     pagination.pages = Math.ceil(count / postsPerPage)
     pagination.openPager = (count > postsPerPage)
-    pagination.activePage = parseInt(num)
+    pagination.activePage = 1
     let {openPager, pages, activePage} = pagination
-    objects = await Schema.find().skip((num-1)*postsPerPage).limit(postsPerPage).sort({createdAt: -1})
+    objects = await Schema.find().limit(postsPerPage).sort({createdAt: -1})
     res.render('index', { objects, moons, category, openPager, pages, activePage, isAdmin: req.isAuthenticated() });
 }
 
@@ -30,6 +30,6 @@ module.exports = async (req, res, category) => {
         }
     }catch(err){
         console.log(err)
-        res.render('error', {isAdmin: req.isAuthenticated() });
+        res.render('error', {isAdmin: req.isAuthenticated()});
     }
 }

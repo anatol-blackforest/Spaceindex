@@ -1,7 +1,7 @@
 //Предварительный обработчик форм (добавление или редактирование)
 const add = require('./add');
 const change = require('./change');
-const {bigImage, notImage, sitename} = require('./messages');
+const {bigImage, notImage, sitename} = require('../config/messages');
 
 //typeOfEdit - тип формы (редактирование или добавление нового)
 module.exports = (err, req, res, typeOfEdit) => {

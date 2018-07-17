@@ -1,6 +1,6 @@
 //устанавливаем админа для приложения
-const {Admin} = require('./schema');
-const {alreadyInst, enterLogPass, enterLogin, enterPass, passLengthHint, success, installed} = require('./messages');
+const {Admin} = require('../models');
+const {alreadyInst, enterLogPass, enterLogin, enterPass, passLengthHint, success, installed} = require('../config/messages');
 const {passLength} = require('../config');
 const crypto = require('./crypto');
 

@@ -1,5 +1,5 @@
 //добавляем небесное тело
-const {Planet, Moon} = require('./schema.js');
+const {Planet, Moon} = require('../models');
 
 module.exports = async (req, res) => {
     try{

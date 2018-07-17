@@ -5,7 +5,7 @@ const path = require('path');
 const stat = promisify(fs.stat);
 
 const {regexp} = require('../config');
-const {Planet, Moon} = require('./schema.js');
+const {Planet, Moon} = require('../models');
 
 //сносим изображение на диске по ссылке в БД
 const removeImg = async (result, image) => {

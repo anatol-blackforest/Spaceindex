@@ -1,7 +1,7 @@
 //обработчик планет
 const express = require('express');
 const router = express.Router();
-const {list, page, current, deleteArticle} = require('../modules/');
+const {list, page, current, deleteArticle} = require('../controllers/');
 
 /* GET planets page. */
 router.get('/', (req, res) => list(req, res, "planets"));

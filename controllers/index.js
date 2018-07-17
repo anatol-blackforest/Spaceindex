@@ -1,11 +1,10 @@
-// сводим модули
+// сводим контроллеры
 const connection = require("./connection")
 const crypto = require("./crypto")
 const uploader = require("./uploader")
 const postuploader = require("./postuploader")
 const formhandler = require("./formhandler")
 const deleteArticle = require("./delete")
-const messages = require("./messages")
 const current = require("./current")
 const schema = require("./schema")
 const search = require("./search")
@@ -26,7 +25,6 @@ module.exports = {
     uploader,
     postuploader,
     formhandler,
-    messages,
     connection,
     schema,
     current,

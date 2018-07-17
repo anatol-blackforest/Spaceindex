@@ -10,3 +10,5 @@ exports.passLength = 4
 //конфигурация постраничной навигации
 exports.planetPagination = {openPager: false, pages: 0, activePage: 1}
 exports.moonPagination = {openPager: false, pages: 0, activePage: 1}
+//ключ сессии
+exports.sessionKey = 'betelgeuse'

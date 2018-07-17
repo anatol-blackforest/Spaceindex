@@ -2,7 +2,8 @@
 const passport = require('passport');
 const express = require('express');
 const router = express.Router();
-const {uploader, postuploader, messages: {addMsg}} = require('../modules');
+const {uploader, postuploader} = require('../controllers');
+const {addMsg} = require('../config/messages');
 
 /* GET users listing. */
 

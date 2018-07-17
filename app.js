@@ -8,22 +8,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-
-const {connection, getAccount} = require('./modules');
-
-const home = require('./routes/home');
-const about = require('./routes/about');
-const add = require('./routes/add');
-const edit = require('./routes/edit');
-const search = require('./routes/search');
-const planets = require('./routes/planets');
-const moons = require('./routes/moons');
-const install = require('./routes/install');
-const login = require('./routes/login');
-const logout = require('./routes/logout');
-const failureAuth = require('./routes/failure');
+const {connection, getAccount} = require('./controllers');
+const {home, about, add, edit, search, planets, moons, install, login, logout, failureAuth} = require('./routes');
 
 const app = express();
+const {sessionKey} = require('./config');
 
 // view engine setup
 app.set("twig options", {strict_variables: false});
@@ -37,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({keys: ['betelgeuse']}));
+app.use(session({keys: [sessionKey]}));
 app.use(passport.initialize());
 app.use(passport.session());
 

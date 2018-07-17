@@ -1,6 +1,6 @@
-const {Planet, Moon} = require('./schema');
+const {Planet, Moon} = require('../models');
 let {postsPerMainPage} = require('../config');
-let {sitename} = require('../modules/messages');
+let {sitename} = require('../config/messages');
 
 module.exports = async (req, res) => {
     try{

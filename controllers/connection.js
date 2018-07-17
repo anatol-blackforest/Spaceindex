@@ -1,11 +1,11 @@
 //Настройки базы данных
 const mongoose = require('mongoose');
-const url = require('../config').mongoUrl;
+const {mongoUrl} = require('../config');
 let connection;
 
 module.exports = async (req, next) => {
     try{
-        if (!connection) connection = await mongoose.connect(url);
+        if (!connection) connection = await mongoose.connect(mongoUrl);
         next()
     }catch(err){
         console.log(err)

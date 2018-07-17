@@ -1,7 +1,7 @@
 //установка админа
 const express = require('express');
 const router = express.Router();
-const {install} = require('../modules');
+const {install} = require('../controllers');
 
 /* GET install. */
 

@@ -1,6 +1,6 @@
 //поисковый модуль
-const {Planet, Moon} = require('./schema');
-const {notFound, searchTitle} = require('./messages');
+const {Planet, Moon} = require('../models');
+const {notFound, searchTitle} = require('../config/messages');
 
 module.exports = async (req, res) => {
     if (!req && req.query && req.query.search) return res.redirect("/")
