@@ -19,7 +19,7 @@
 
 							{% if category == "moons" %}
 								<h2>Parent planet: <a href="/planets/{{object.parentPlanet|escape}}">{{object.parentPlanet|escape}}</a></h2>
-								<h2>Distance from {{object.parentPlanet|escape}}: {{object.distanseFromParentPlanet|escape}}</h2>
+								<h2>Distance from {{object.parentPlanet|escape}}: {{object.distanseFromParentPlanet|escape}} th. km</h2>
 							{% endif %}
 
 							{% if category == "planets" %}
@@ -28,19 +28,19 @@
 										<a href="/moons/{{moon.title|escape}}">{{moon.title|escape}}</a>, 
 									{% endfor %}
 								</h2>
-								<h2>Distance from parent star: {{object.distanseFromStar|escape}}</h2>
-								<h2>Year: {{object.year|escape}}</h2>
+								<h2>Distance from parent star: {{object.distanseFromStar|escape}} mln. km</h2>
+								<h2>Year: {{object.year|escape}} days</h2>
 							{% endif %}
 
-							<h2>Day: {{object.day|escape}}</h2>
-							<h2>Diameter: {{object.diameter|escape}}</h2>
-							<h2>Gravity: {{object.gravity|escape}}</h2>
-							<h2>Temperature: {{object.temperature|escape}}</h2>
+							<h2>Day: {{object.day|escape}} hours</h2>
+							<h2>Diameter: {{object.diameter|escape}} km</h2>
+							<h2>Gravity: {{object.gravity|escape}} of Earth</h2>
+							<h2>Temperature: {{object.temperature|escape}} C°</h2>
 							<h2>Water: {{object.water|escape}}</h2>
 							<h2>Radiation: {{object.radiation|escape}}</h2>
 							<h2>Magnetosphere: {{object.magnetosphere|escape}}</h2>
 							<h2>Atmosphere: {{object.atmosphere|escape}}</h2>
-							<h2>Atmospheric density: {{object.atmosphericDensity|escape}}</h2>
+							<h2>Atmospheric density: {{object.atmosphericDensity|escape}} of earth atmosphere</h2>
 							<h2>Description: <br /></h2>
 							<p>{{object.description|escape}}</p>
 
@@ -98,7 +98,7 @@
 									</p>
 
 									<p>Atmospheric density: </p>
-									<input type="number" name="atmosphericDensity" min="0" step="0.1"  value="{{object.atmosphericDensity|escape}}" placeholder="Atmospheric density, in part of Earth density...">
+									<input type="number" name="atmosphericDensity" min="0" step="0.01"  value="{{object.atmosphericDensity|escape}}" placeholder="Atmospheric density, in part of Earth density...">
 									
 									{% if category == "moons" %}
 										<fieldset>

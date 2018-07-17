@@ -21,8 +21,8 @@
             <li class="{% if selected == "about" %}selected{% endif %} menu">
                 <a href="/about">About</a>
             </li>
-            <li class="{% if selected == "planets" %}selected{% endif %} menu">
-                <a href="/planets">Objects</a>
+            <li class="{% if selected == "planets" %}selected{% elseif selected == "moons" %}selected{% endif %} menu">
+                <a href="/" id="index">Index</a>
                 <ul class="primary">
                     <li>
                         <a href="/planets">Planets</a>

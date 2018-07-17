@@ -44,9 +44,9 @@
 									    {% for moon in moons %}
 											<li>
 											    {% if moon.image %}
-													<a href="/moons/{{planet.title}}"><img src="/uploades/thumbs/{{moon.image}}" alt="{{moon.title}}"></a>
+													<a href="/moons/{{moon.title}}"><img src="/uploades/thumbs/{{moon.image}}" alt="{{moon.title}}"></a>
 												{% else %}
-													<a href="/moons/{{planet.title}}"><img src="/uploades/thumbs/noimage.png" alt="{{moon.title}}"></a>
+													<a href="/moons/{{moon.title}}"><img src="/uploades/thumbs/noimage.png" alt="{{moon.title}}"></a>
 												{% endif %}
 												<h1><a href="/moons/{{moon.title}}">{{moon.title}}</a></h1>
 												<span>{{moon.createdAt|date("m/d/Y")}}</span>
