@@ -6,3 +6,4 @@ In space no one can hear you scream (c)
 Первоначальная установка приложения - http://адрес-вашего-хоста/install , предварительно подняв MongoDB. Создаем админский аккаунт и пользуемся на здоровье. Кириллический шрифт косячит в силу специфики лигатуры audiowide-regular-webfont на фронтенде. Создавалось под западную аудиторию.
 
 Рабочая версия: http://spaceindex.ya.vu/ (mirror - http://us.ya.vu/)
+Демо - https://spaceindex.herokuapp.com/ 
