@@ -6,7 +6,6 @@ const postuploader = require("./postuploader")
 const formhandler = require("./formhandler")
 const deleteArticle = require("./delete")
 const current = require("./current")
-const schema = require("./schema")
 const search = require("./search")
 const change = require("./change")
 const page = require("./page")
@@ -26,7 +25,6 @@ module.exports = {
     postuploader,
     formhandler,
     connection,
-    schema,
     current,
     deleteArticle,
     add,

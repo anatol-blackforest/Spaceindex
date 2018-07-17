@@ -10,9 +10,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const {connection, getAccount} = require('./controllers');
 const {home, about, add, edit, search, planets, moons, install, login, logout, failureAuth} = require('./routes');
+const {sessionKey} = require('./config');
 
 const app = express();
-const {sessionKey} = require('./config');
 
 // view engine setup
 app.set("twig options", {strict_variables: false});

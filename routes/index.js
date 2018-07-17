@@ -2,7 +2,7 @@
 const about = require("./about")
 const add = require("./add")
 const edit = require("./edit")
-const failure = require("./failure")
+const failureAuth = require("./failure")
 const home = require("./home")
 const install = require("./install")
 const login = require("./login")
@@ -15,7 +15,7 @@ module.exports = {
     about,
     add,
     edit,
-    failure,
+    failureAuth,
     home,
     install,
     login,
