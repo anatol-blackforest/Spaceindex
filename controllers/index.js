@@ -1,5 +1,4 @@
 // сводим контроллеры
-const connection = require("./connection")
 const crypto = require("./crypto")
 const uploader = require("./uploader")
 const postuploader = require("./postuploader")
@@ -24,7 +23,6 @@ module.exports = {
     uploader,
     postuploader,
     formhandler,
-    connection,
     current,
     deleteArticle,
     add,

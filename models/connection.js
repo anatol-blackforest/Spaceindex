@@ -1,4 +1,4 @@
-//Настройки базы данных
+//Подключение к базе данных
 const mongoose = require('mongoose');
 const {mongoUrl} = require('../config');
 let connection;
