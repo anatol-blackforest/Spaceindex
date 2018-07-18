@@ -10,11 +10,10 @@ module.exports = async (req, res) => {
                 //добавляем планету
                 case "planet" : {
                     //название в нижний регистр
-                    body.title = body.title.toLowerCase()
                     const {title} = body
                     const planet = new Planet(body);
                     //подвешиваем готовые спутники
-                    planet.moons = await Moon.find({parentPlanet: title})
+                    planet.moons = await Moon.find({parentPlanet: { $regex: new RegExp(title, "ig")}})
                     await planet.save();
                     res.redirect(`/planets/${title}`);
                     break
@@ -22,12 +21,11 @@ module.exports = async (req, res) => {
                 //добавляем спутник
                 case "moon" : {
                     //название в нижний регистр
-                    body.parentPlanet = body.parentPlanet.toLowerCase()
                     const {parentPlanet} = body
                     const moon = new Moon(body)
                     await moon.save()
                     //вешаем спутник на орбиту материнской планеты
-                    const planet = await Planet.findOne({title: parentPlanet})
+                    const planet = await Planet.findOne({title: { $regex: new RegExp(parentPlanet, "ig")}})
                     if(planet){
                         planet.moons.push(moon._id)
                         await Planet.update({title: parentPlanet}, {$set: planet})
