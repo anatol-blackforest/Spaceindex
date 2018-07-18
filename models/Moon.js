@@ -12,6 +12,7 @@ const MoonSchema = new mongoose.Schema({
     },
     parentPlanet: {
         type: String,
+        lowercase:  true, 
         required: "Moon must have a parent planet!",
     }
     
