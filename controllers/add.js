@@ -9,23 +9,25 @@ module.exports = async (req, res) => {
             switch(body.type){
                 //добавляем планету
                 case "planet" : {
-                    let title = body.title.toLowerCase()
-                    let planet = new Planet(body);
-                    planet.title = title
+                    //название в нижний регистр
+                    body.title = body.title.toLowerCase()
+                    const {title} = body
+                    const planet = new Planet(body);
                     //подвешиваем готовые спутники
-                    planet.moons = await Moon.find({parentPlanet: body.title.toLowerCase()})
+                    planet.moons = await Moon.find({parentPlanet: title})
                     await planet.save();
-                    res.redirect(`/planets/${body.title}`);
+                    res.redirect(`/planets/${title}`);
                     break
                 }
                 //добавляем спутник
                 case "moon" : {
-                    let parentPlanet = body.parentPlanet.toLowerCase()
-                    let moon = new Moon(body)
-                    moon.parentPlanet = parentPlanet
+                    //название в нижний регистр
+                    body.parentPlanet = body.parentPlanet.toLowerCase()
+                    const {parentPlanet} = body
+                    const moon = new Moon(body)
                     await moon.save()
                     //вешаем спутник на орбиту материнской планеты
-                    let planet = await Planet.findOne({title: parentPlanet})
+                    const planet = await Planet.findOne({title: parentPlanet})
                     if(planet){
                         planet.moons.push(moon._id)
                         await Planet.update({title: parentPlanet}, {$set: planet})
