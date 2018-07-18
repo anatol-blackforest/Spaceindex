@@ -4,7 +4,7 @@ const AstroBodySchema = require('./prototype');
 mongoose.Promise = Promise;
 
 // Схема планеты
-const PlanetSchema = mongoose.Schema({
+const PlanetSchema = new mongoose.Schema({
     ...AstroBodySchema,
     year:{
         type: Number,

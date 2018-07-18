@@ -4,7 +4,7 @@ const AstroBodySchema = require('./prototype');
 mongoose.Promise = Promise;
 
 // Схема спутника
-const MoonSchema = mongoose.Schema({
+const MoonSchema = new mongoose.Schema({
     ...AstroBodySchema,
     distanseFromParentPlanet:{
         type: Number,

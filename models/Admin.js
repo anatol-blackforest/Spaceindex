@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 
 //схема аккаунта
-const AdminSchema = mongoose.Schema({
+const AdminSchema = new mongoose.Schema({
     adminname:{
         type: String,
         minlength: 4,
