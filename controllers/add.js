@@ -11,14 +11,14 @@ module.exports = async (req, res) => {
                 case "planet" : {
                     let planet = new Planet(body);
                     //подвешиваем готовые спутники
-                    planet.moons = await Moon.find({parentPlanet: body.title})
+                    planet.moons = await Moon.find({parentPlanet: body.title.toLowerCase()})
                     await planet.save();
                     res.redirect(`/planets/${body.title}`);
                     break
                 }
                 //добавляем спутник
                 case "moon" : {
-                    let parentPlanet = body.parentPlanet
+                    let parentPlanet = body.parentPlanet.toLowerCase()
                     let moon = new Moon(body)
                     moon.parentPlanet = parentPlanet
                     await moon.save()
