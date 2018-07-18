@@ -18,12 +18,12 @@ module.exports = async (req, res) => {
                 }
                 //добавляем спутник
                 case "moon" : {
-                    let parentPlanet = body.parentPlanet
+                    let parentPlanet = body.parentPlanet.toLowerCase()
                     let moon = new Moon(body)
                     moon.parentPlanet = parentPlanet
                     await moon.save()
                     //вешаем спутник на орбиту материнской планеты
-                    let planet = await Planet.findOne({title: parentPlanet.toLowerCase()})
+                    let planet = await Planet.findOne({title: parentPlanet})
                     if(planet){
                         planet.moons.push(moon._id)
                         await Planet.update({title: parentPlanet}, {$set: planet})
