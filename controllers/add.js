@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
                 case "planet" : {
                     let planet = new Planet(body);
                     //подвешиваем готовые спутники
-                    planet.moons = await Moon.find({parentPlanet: body.title})
+                    planet.moons = await Moon.find({parentPlanet: body.title.toLowerCase()})
                     await planet.save();
                     res.redirect(`/planets/${body.title}`);
                     break
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
                     moon.parentPlanet = parentPlanet
                     await moon.save()
                     //вешаем спутник на орбиту материнской планеты
-                    let planet = await Planet.findOne({title: parentPlanet})
+                    let planet = await Planet.findOne({title: parentPlanet.toLowerCase()})
                     if(planet){
                         planet.moons.push(moon._id)
                         await Planet.update({title: parentPlanet}, {$set: planet})
