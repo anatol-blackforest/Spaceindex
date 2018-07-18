@@ -25,8 +25,10 @@ module.exports = async (req, res) => {
             switch(body.type){
                 //изменяем планету
                 case "planets" : {
-                    let planet = await Planet.findOneAndUpdate({title: body.oldTitle}, {$set: body})
+                    const planet = await Planet.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(planet, body.image)
+                    //меняем имя материнской планеты у всех связанных спутников
+                    if(body.oldTitle !== body.title) await Moon.update({parentPlanet: body.oldTitle}, {$set: {parentPlanet: body.title}})
                     res.redirect(`/planets/${body.title}`);
                     break
                 }
@@ -35,14 +37,15 @@ module.exports = async (req, res) => {
                     let moon = await Moon.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(moon, body.image)
                     let {parentPlanet, oldParentPlanet} = body
+                    const regexPP = {$regex: new RegExp(parentPlanet, "ig")}
                     //вешаем спутник на орбиту новой материнской планеты
                     let oldPlanet = await Planet.findOne({title: oldParentPlanet}).populate("moons")
-                    let newPlanet = await Planet.findOne({title: parentPlanet})
+                    let newPlanet = await Planet.findOne({title: regexPP})
                     if(newPlanet){
                         oldPlanet.moons = oldPlanet.moons.filter(item => item.title !== body.title)
                         await Planet.update({title: oldParentPlanet}, {$set: {moons: oldPlanet.moons}})
                         if (parentPlanet !== oldParentPlanet) newPlanet.moons.push(moon._id)
-                        await Planet.update({title: parentPlanet}, {$set: {moons: newPlanet.moons}})
+                        await Planet.update({title: regexPP}, {$set: {moons: newPlanet.moons}})
                     }
                     res.redirect(`/moons/${body.title}`);
                     break

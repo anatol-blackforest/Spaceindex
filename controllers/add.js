@@ -20,13 +20,14 @@ module.exports = async (req, res) => {
                 //добавляем спутник
                 case "moon" : {
                     const {parentPlanet} = body
+                    const regexPP = {$regex: new RegExp(parentPlanet, "ig")}
                     const moon = new Moon(body)
                     await moon.save()
                     //вешаем спутник на орбиту материнской планеты
-                    const planet = await Planet.findOne({title: { $regex: new RegExp(parentPlanet, "ig")}})
+                    const planet = await Planet.findOne({title: regexPP})
                     if(planet){
                         planet.moons.push(moon._id)
-                        await Planet.update({title: parentPlanet}, {$set: planet})
+                        await Planet.update({title: regexPP}, {$set: planet})
                     }
                     res.redirect(`/moons/${body.title}`);
                     break

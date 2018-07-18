@@ -4,7 +4,7 @@ const {notFound, searchTitle} = require('../config/messages');
 
 module.exports = async (req, res) => {
     if (!req && req.query && req.query.search) return res.redirect("/")
-    search = new RegExp(req.query.search)
+    search = new RegExp(req.query.search, "ig")
     planets = await Planet.find({title: search})
     moons = await Moon.find({title: search})
     let searchedObjects = [...planets, ...moons]
