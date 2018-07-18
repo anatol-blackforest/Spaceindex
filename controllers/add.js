@@ -9,7 +9,9 @@ module.exports = async (req, res) => {
             switch(body.type){
                 //добавляем планету
                 case "planet" : {
+                    let title = body.title.toLowerCase()
                     let planet = new Planet(body);
+                    planet.title = title
                     //подвешиваем готовые спутники
                     planet.moons = await Moon.find({parentPlanet: body.title.toLowerCase()})
                     await planet.save();
