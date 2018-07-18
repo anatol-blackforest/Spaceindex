@@ -9,7 +9,6 @@ module.exports = async (req, res) => {
             switch(body.type){
                 //добавляем планету
                 case "planet" : {
-                    //название в нижний регистр
                     const {title} = body
                     const planet = new Planet(body);
                     //подвешиваем готовые спутники
@@ -20,7 +19,6 @@ module.exports = async (req, res) => {
                 }
                 //добавляем спутник
                 case "moon" : {
-                    //название в нижний регистр
                     const {parentPlanet} = body
                     const moon = new Moon(body)
                     await moon.save()
