@@ -11,4 +11,4 @@ exports.passLength = 4
 exports.planetPagination = {openPager: false, pages: 0, activePage: 1}
 exports.moonPagination = {openPager: false, pages: 0, activePage: 1}
 //ключ сессии
-exports.sessionKey = 'betelgeuse'
+exports.key = process.env.KEY || "key"

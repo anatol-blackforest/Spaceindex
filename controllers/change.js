@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
                     const planet = await Planet.findOneAndUpdate({title: body.oldTitle}, {$set: body})
                     removeImg(planet, body.image)
                     //меняем имя материнской планеты у всех связанных спутников
-                    if(body.oldTitle !== body.title) await Moon.update({parentPlanet: body.oldTitle}, {$set: {parentPlanet: body.title}})
+                    if (body.oldTitle !== body.title) await Moon.update({parentPlanet: body.oldTitle}, {$set: {parentPlanet: body.title}})
                     res.redirect(`/planets/${body.title}`);
                     break
                 }

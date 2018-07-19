@@ -11,7 +11,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const {home, about, add, edit, search, planets, moons, install, login, logout, failureAuth} = require('./routes');
 const {getAccount} = require('./controllers');
 const {connection} = require('./models');
-const {sessionKey} = require('./config');
+const {key} = require('./config');
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({keys: [sessionKey]}));
+app.use(session({keys: [key]}));
 app.use(passport.initialize());
 app.use(passport.session());
 
